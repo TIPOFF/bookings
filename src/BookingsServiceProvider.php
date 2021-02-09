@@ -4,7 +4,6 @@ namespace Tipoff\Bookings;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Tipoff\Bookings\Commands\BookingsCommand;
 
 class BookingsServiceProvider extends PackageServiceProvider
 {
