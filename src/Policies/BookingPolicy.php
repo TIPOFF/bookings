@@ -2,9 +2,9 @@
 
 namespace Tipoff\Bookings\Policies;
 
-use Tipoff\Bookings\Models\Booking;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Tipoff\Bookings\Models\Booking;
 
 class BookingPolicy
 {
