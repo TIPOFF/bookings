@@ -20,9 +20,9 @@ class BookingFactory extends Factory
     public function definition()
     {
         return [
-            'order_id'     => randomOrCreate(config('tipoff.model_class.order')),
+            'order_id'     => randomOrCreate(app('order')),
             // @todo need to limit slots to just the ones for a room at the location of the order.
-            'slot_id'      => randomOrCreate(config('tipoff.model_class.slot')),
+            'slot_id'      => randomOrCreate(app('slot')),
             'participants' => $this->faker->numberBetween(1, 10),
             'is_private'   => $this->faker->boolean,
         ];
