@@ -43,7 +43,7 @@ class Booking extends BaseModel
      *
      * !!! This funcionaly is uswed mainly by seeder !!!
      *
-     * @return self
+     * @return void
      */
     public function generatePricing()
     {
