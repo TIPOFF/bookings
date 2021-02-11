@@ -43,7 +43,7 @@ class Booking extends BaseModel
      *
      * !!! This funcionaly is uswed mainly by seeder !!!
      *
-     * @return self
+     * @return void
      */
     public function generatePricing()
     {
@@ -137,46 +137,46 @@ class Booking extends BaseModel
 
     public function order()
     {
-        return $this->belongsTo(config('tipoff.model_class.order'));
+        return $this->belongsTo(app('order'));
     }
 
     public function slot()
     {
-        return $this->belongsTo(config('tipoff.model_class.slot'));
+        return $this->belongsTo(app('slot'));
     }
 
     public function room()
     {
-        return $this->hasOneThrough(config('tipoff.model_class.room'), config('tipoff.model_class.slot'), 'id', 'id', 'slot_id', 'room_id');
+        return $this->hasOneThrough(app('room'), app('slot'), 'id', 'id', 'slot_id', 'room_id');
     }
 
     public function rate()
     {
-        return $this->belongsTo(config('tipoff.model_class.rate'));
+        return $this->belongsTo(app('rate'));
     }
 
     public function tax()
     {
-        return $this->belongsTo(config('tipoff.model_class.tax'));
+        return $this->belongsTo(app('tax'));
     }
 
     public function fee()
     {
-        return $this->belongsTo(config('tipoff.model_class.fee'));
+        return $this->belongsTo(app('fee'));
     }
 
     public function participants()
     {
-        return $this->belongsToMany(config('tipoff.model_class.participant'));
+        return $this->belongsToMany(app('participant'));
     }
 
     public function signatures()
     {
-        return $this->hasMany(config('tipoff.model_class.signature'));
+        return $this->hasMany(app('signature'));
     }
 
     public function notes()
     {
-        return $this->morphMany(config('tipoff.model_class.note'), 'noteable');
+        return $this->morphMany(app('note'), 'noteable');
     }
 }
