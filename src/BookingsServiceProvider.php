@@ -18,7 +18,6 @@ class BookingsServiceProvider extends TipoffServiceProvider
                 Booking::class => BookingPolicy::class,
             ])
             ->name('bookings')
-            ->hasConfigFile()
-            ->hasViews();
+            ->hasConfigFile();
     }
 }
