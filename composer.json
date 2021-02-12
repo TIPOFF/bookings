@@ -31,8 +31,7 @@
     "autoload": {
         "psr-4": {
             "Tipoff\\Bookings\\": "src",
-            "Tipoff\\Bookings\\Database\\Factories\\": "database/factories",
-            "Tipoff\\Bookings\\Database\\Seeders\\": "database/seeders"
+            "Tipoff\\Bookings\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
