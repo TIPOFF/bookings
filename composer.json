@@ -16,10 +16,11 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "tipoff/support": "^1.2"
+        "tipoff/authorization": "^1.0.1",
+        "tipoff/support": "^1.2.2"
     },
     "require-dev": {
-        "tipoff/test-support": "^1.0"
+        "tipoff/test-support": "^1.0.2"
     },
     "repositories": [
         {
@@ -30,7 +31,8 @@
     "autoload": {
         "psr-4": {
             "Tipoff\\Bookings\\": "src",
-            "Tipoff\\Bookings\\Database\\Factories\\": "database/factories"
+            "Tipoff\\Bookings\\Database\\Factories\\": "database/factories",
+            "Tipoff\\Bookings\\Database\\Seeders\\": "database/seeders"
         }
     },
     "autoload-dev": {
