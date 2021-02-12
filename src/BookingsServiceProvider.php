@@ -4,36 +4,21 @@ declare(strict_types=1);
 
 namespace Tipoff\Bookings;
 
-use Illuminate\Support\Facades\Gate;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Tipoff\Bookings\Models\Booking;
 use Tipoff\Bookings\Policies\BookingPolicy;
+use Tipoff\Support\TipoffPackage;
+use Tipoff\Support\TipoffServiceProvider;
 
-class BookingsServiceProvider extends PackageServiceProvider
+class BookingsServiceProvider extends TipoffServiceProvider
 {
-    public function boot()
+    public function configureTipoffPackage(TipoffPackage $package): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-
-        parent::boot();
-    }
-
-    public function configurePackage(Package $package): void
-    {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
+            ->hasPolicies([
+                Booking::class => BookingPolicy::class,
+            ])
             ->name('bookings')
             ->hasConfigFile()
             ->hasViews();
-    }
-
-    public function registeringPackage()
-    {
-        Gate::policy(Booking::class, BookingPolicy::class);
     }
 }
