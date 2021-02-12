@@ -5,8 +5,6 @@ namespace Tipoff\Bookings;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Tipoff\Discounts\Models\Booking;
-use Tipoff\Support\TipoffPackage;
-use Tipoff\Support\TipoffServiceProvider;
 
 class BookingsServiceProvider extends PackageServiceProvider
 {
