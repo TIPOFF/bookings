@@ -2,7 +2,6 @@
 
 namespace Tipoff\Bookings;
 
-use Tipoff\Bookings\Models\Booking;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
