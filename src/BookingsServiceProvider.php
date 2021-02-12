@@ -14,13 +14,11 @@ class BookingsServiceProvider extends TipoffServiceProvider
     public function configureTipoffPackage(TipoffPackage $package): void
     {
         $package
+            ->hasPolicies([
+                Booking::class => BookingPolicy::class,
+            ])
             ->name('bookings')
             ->hasConfigFile()
             ->hasViews();
-    }
-
-    public function registeringPackage()
-    {
-        Gate::policy(Booking::class, BookingPolicy::class);
     }
 }
