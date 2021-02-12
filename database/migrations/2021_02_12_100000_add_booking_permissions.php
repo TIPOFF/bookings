@@ -16,8 +16,7 @@ class AddBookingPermissions extends Migration
             foreach ([
                          'view bookings',
                          'create bookings',
-                         'update bookings',
-                         'delete bookings'
+                         'update bookings'
                      ] as $name) {
                 app(Permission::class)::findOrCreate($name, null);
             };
