@@ -4,6 +4,9 @@ namespace Tipoff\Bookings;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Tipoff\Discounts\Models\Booking;
+use Tipoff\Support\TipoffPackage;
+use Tipoff\Support\TipoffServiceProvider;
 
 class BookingsServiceProvider extends PackageServiceProvider
 {
@@ -22,6 +25,9 @@ class BookingsServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
+            ->hasModelInterfaces([
+                BookingInterface::class => Booking::class,
+            ])
             ->name('bookings')
             ->hasConfigFile()
             ->hasViews();
