@@ -11,9 +11,6 @@ class BookingsServiceProvider extends TipoffServiceProvider
     public function configureTipoffPackage(TipoffPackage $package): void
     {
         $package
-            ->hasModelInterfaces([
-                BookingInterface::class => Booking::class,
-            ])
             ->name('bookings')
             ->hasConfigFile()
             ->hasViews();
