@@ -2,7 +2,6 @@
 
 namespace Tipoff\Bookings\Http\Controllers;
 
-use Tipoff\Bookings\Http\Controllers\Controller;
 use App\Http\Requests\Booking\StoreCartItem;
 use App\Models\CartItem;
 use App\Models\User;

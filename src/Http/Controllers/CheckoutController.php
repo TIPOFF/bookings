@@ -2,7 +2,6 @@
 
 namespace Tipoff\Bookings\Http\Controllers;
 
-use Tipoff\Bookings\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\User;
 use Facades\App\UseCases\PurchaseBooking;
