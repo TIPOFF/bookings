@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tipoff\Bookings;
 
 use Tipoff\Discounts\Models\Booking;
-use Tipoff\Discounts\Policies\Booking;
+use Tipoff\Discounts\Policies\BookingPolicy;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
