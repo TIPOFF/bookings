@@ -8,10 +8,6 @@ class Booking extends BaseModel
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id',
-    ];
-
     protected $casts = [
     ];
 
