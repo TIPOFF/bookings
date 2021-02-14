@@ -51,10 +51,7 @@
         "laravel": {
             "providers": [
                 "Tipoff\\Bookings\\BookingsServiceProvider"
-            ],
-            "aliases": {
-                "Bookings": "Tipoff\\Bookings\\BookingsFacade"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
