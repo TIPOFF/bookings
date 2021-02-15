@@ -1,4 +1,8 @@
-<?php namespace Tipoff\Bookings\Models;
+<?php
+
+declare(strict_types=1);
+
+namespace Tipoff\Bookings\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
