@@ -56,7 +56,6 @@ class Booking extends BaseResource
 
     public static $group = 'Operations';
 
-
     public function fieldsForIndex(NovaRequest $request)
     {
         return array_filter([
