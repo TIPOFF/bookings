@@ -29,6 +29,14 @@ class Booking extends BaseResource
         'id',
     ];
 
+    /** @psalm-suppress UndefinedClass */
+    protected array $filterClassList = [
+        \Tipoff\Bookings\Nova\Filters\RealizedBookings::class,
+        \Tipoff\Scheduling\Nova\Filters\SlotRoom::class,
+        \Tipoff\Scheduling\Nova\Filters\SlotDayFilter::class,
+        \Tipoff\Locations\Nova\Filters\OrderLocation::class,
+    ];
+
     public static function indexQuery(NovaRequest $request, $query)
     {
         if ($request->user()->hasRole([
@@ -124,16 +132,6 @@ class Booking extends BaseResource
             ID::make(),
             DateTime::make('Created At')->exceptOnForms(),
             DateTime::make('Updated At')->exceptOnForms(),
-        ];
-    }
-
-    public function filters(Request $request)
-    {
-        return [
-            new Filters\RealizedBookings,
-            new Filters\OrderLocation,
-            new Filters\SlotRoom,
-            new Filters\SlotDayFilter,
         ];
     }
 }
