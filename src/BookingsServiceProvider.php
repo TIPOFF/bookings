@@ -18,7 +18,7 @@ class BookingsServiceProvider extends TipoffServiceProvider
                 Booking::class => BookingPolicy::class,
             ])
             ->hasNovaResources([
-                Tipoff\Bookings\Nova\Booking::class,
+                \Tipoff\Bookings\Nova\Booking::class,
             ])
             ->name('bookings')
             ->hasConfigFile();
