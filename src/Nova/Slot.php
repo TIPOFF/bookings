@@ -1,6 +1,6 @@
 <?php
 
-namespace Tipoff\Scheduling\Nova;
+namespace Tipoff\Bookings\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -18,7 +18,7 @@ use Tipoff\Support\Nova\BaseResource;
 
 class Slot extends BaseResource
 {
-    public static $model = \Tipoff\Scheduling\Models\Slot::class;
+    public static $model = \Tipoff\Bookings\Models\Slot::class;
 
     public static $title = 'title';
 
