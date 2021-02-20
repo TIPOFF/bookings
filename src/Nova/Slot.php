@@ -28,7 +28,7 @@ class Slot extends BaseResource
 
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
-        \Tipoff\Scheduling\Filters\FutureSlots::class,
+        \Tipoff\Bookings\Filters\FutureSlots::class,
         \Tipoff\EscapeRoom\Filters\RoomLocation::class,
         \Tipoff\EscapeRoom\Filters\Room::class,
     ];
