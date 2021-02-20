@@ -33,12 +33,13 @@ return [
 ];
 ```
 
-## Usage
+## Models
 
-```php
-$skeleton = new Tipoff\Bookings();
-echo $skeleton->echoPhrase('Hello, Tipoff!');
-```
+We include the following model in this package:
+
+**List of Models**
+
+- Booking
 
 ## Testing
 
