@@ -35,7 +35,7 @@ return [
 
 ## Models
 
-We include the following model:
+We include the following model in this package:
 
 **List of Models**
 
