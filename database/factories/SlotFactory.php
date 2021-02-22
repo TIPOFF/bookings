@@ -36,6 +36,9 @@ class SlotFactory extends Factory
         $schedule = randomOrCreate(app('recurring_schedule'));
         $dates = [];
         $days = [];
+        if (empty($schedule->valid_from)) {
+            $schedule->valid_from = Carbon::today();
+        }
         $initialDate = $schedule->valid_from;
         for ($i = 1; $i < 60; $i++) {
             $date = $initialDate->addDays(1);
