@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Tipoff\Bookings;
 
 use Tipoff\Bookings\Models\Booking;
-use Tipoff\Bookings\Policies\BookingPolicy;
 use Tipoff\Bookings\Models\Participant;
-use Tipoff\Bookings\Policies\ParticipantPolicy;
 use Tipoff\Bookings\Models\Slot;
-use Tipoff\Bookings\Policies\SlotPolicy;
+use Tipoff\Bookings\Policies\BookingPolicy;
+use Tipoff\Bookings\Policies\ParticipantPolicy;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
