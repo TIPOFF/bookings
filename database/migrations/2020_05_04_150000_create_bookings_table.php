@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Tipoff\Bookings\Models\BookingCategory;
+use Tipoff\Bookings\Models\BookingStatus;
 
 class CreateBookingsTable extends Migration
 {
@@ -12,17 +14,24 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(app('order'));
-            $table->foreignIdFor(app('slot'));
-            $table->unsignedTinyInteger('participants');
-            $table->boolean('is_private')->default(false);
-            $table->unsignedInteger('amount'); // Amount is in cents. It is net, excluding taxes and fees. An accessor for total_amount adds the 3 columns
-            $table->unsignedInteger('total_taxes'); // Taxes is in cents. Computed from attached tax.
-            $table->unsignedInteger('total_fees'); // Processing Fees is in cents. Computed from attached fee.
-            $table->foreignIdFor(app('rate'))->nullable(); // Pricing rate structure used on this booking
-            $table->foreignIdFor(app('tax'))->nullable(); // Tax rate used on this booking
-            $table->foreignIdFor(app('fee'))->nullable(); // Processing fee used on this booking
+            $table->tinyInteger('slot_number');
+            $table->tinyInteger('total_participants');
+            $table->integer('total_amount');
+            $table->integer('amount');
+            $table->integer('total_taxes');
+            $table->integer('total_fees');
+            // Todo: Add morph relation foreign IDs
+//            $table->foreignIdFor(app('variation'))->nullable();
+//            $table->foreignIdFor(app('experience'))->nullable();
+//            $table->foreignIdFor(app('order'))->nullable();
+//            $table->foreignIdFor(app('agent'))->nullable();
+//            $table->foreignIdFor(app('user'))->nullable();
+//            $table->foreignIdFor(app('subject'))->nullable();
+            $table->foreignIdFor(BookingCategory::class);
+            $table->foreignIdFor(BookingStatus::class);
             $table->timestamps();
+            $table->timestamp('processed_at')->nullable();
+            $table->timestamp('cancelled_at')->nullable();
         });
     }
 }
