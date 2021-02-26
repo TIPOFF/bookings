@@ -7,8 +7,6 @@ namespace Tipoff\Bookings\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tipoff\Support\Models\BaseModel;
-use Tipoff\Bookings\Models\BookingStatus;
-use Tipoff\Bookings\Models\BookingCategory;
 
 class Booking extends BaseModel
 {
@@ -170,5 +168,4 @@ class Booking extends BaseModel
     {
         return $this->morphTo();
     }
-
 }
