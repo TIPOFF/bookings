@@ -12,11 +12,12 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(app('user'))->nullable()->index();
-            $table->string('email')->unique();
-            $table->string('name')->nullable(); // first name
-            $table->string('name_last')->nullable();
-            $table->date('dob')->nullable(); // date of birth
+            $table->morphs('user')->nullable();
+            $table->string('email')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->tinyInteger('is_verified')->nullable();
             $table->softDeletes(); // Soft delete if the participant email address bounces
             $table->timestamps();
         });
