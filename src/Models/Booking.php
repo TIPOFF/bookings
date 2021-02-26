@@ -88,8 +88,28 @@ class Booking extends BaseModel
         return $this->morphToMany(app('user'), 'user');
     }
 
+    public function bookingStatus()
+    {
+        return $this->belongsTo(BookingStatus::class);
+    }
+
+    public function bookingCategory()
+    {
+        return $this->belongsTo(BookingCategory::class);
+    }
+
+    public function variation()
+    {
+        return $this->morphTo();
+    }
+
+    public function experience()
+    {
+        return $this->morphTo();
+    }
+
     public function subject()
     {
-        return $this->morphToMany(app('subject'), 'subject');
+        return $this->morphTo();
     }
 }

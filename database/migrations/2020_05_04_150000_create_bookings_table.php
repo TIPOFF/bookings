@@ -14,24 +14,25 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('slot_number');
-            $table->tinyInteger('total_participants');
-            $table->integer('total_amount');
-            $table->integer('amount');
-            $table->integer('total_taxes');
-            $table->integer('total_fees');
-            // Todo: Add morph relation foreign IDs
-//            $table->foreignIdFor(app('variation'))->nullable();
-//            $table->foreignIdFor(app('experience'))->nullable();
-//            $table->foreignIdFor(app('order'))->nullable();
-//            $table->foreignIdFor(app('agent'))->nullable();
-//            $table->foreignIdFor(app('user'))->nullable();
-//            $table->foreignIdFor(app('subject'))->nullable();
-            $table->foreignIdFor(BookingCategory::class);
-            $table->foreignIdFor(BookingStatus::class);
+            $table->string('slot_number')->nullable();
+            $table->integer('total_participants')->nullable();
+            $table->unsignedInteger('total_amount');
+            $table->unsignedInteger('amount')->nullable();
+            $table->unsignedInteger('total_taxes')->nullable();
+            $table->unsignedInteger('total_fees')->nullable();
+            $table->morphs('variation')->nullable();
+            $table->morphs('experience')->nullable();
+            $table->morphs('order')->nullable();
+            $table->unsignedBigInteger('booking_category_id');
+            $table->foreign('booking_category_id')->references('id')->on('booking_categories');
+            $table->unsignedBigInteger('booking_status_id');
+            $table->foreign('booking_status_id')->references('id')->on('booking_status');
+            $table->morphs('agent')->nullable();
+            $table->morphs('user')->nullable();
+            $table->morphs('subject')->nullable();
+            $table->datetime('proccessed_at')->nullable();;
+            $table->datetime('canceled_at')->nullable();;
             $table->timestamps();
-            $table->timestamp('processed_at')->nullable();
-            $table->timestamp('cancelled_at')->nullable();
         });
     }
 }

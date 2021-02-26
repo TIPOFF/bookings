@@ -14,4 +14,14 @@ class BookingCategory extends BaseModel
     use HasPackageFactory;
     use HasCreator;
     use HasUpdater;
+
+    protected static function boot()
+    {
+        parent::boot();
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }
