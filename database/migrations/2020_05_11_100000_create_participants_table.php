@@ -17,7 +17,7 @@ class CreateParticipantsTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->date('birth_date')->nullable();
-            $table->tinyInteger('is_verified')->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->softDeletes(); // Soft delete if the participant email address bounces
             $table->timestamps();
         });
