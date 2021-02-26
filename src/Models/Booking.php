@@ -22,7 +22,7 @@ class Booking extends BaseModel
         'order',
         'agent',
         'user',
-        'subject'
+        'subject',
     ];
 
     public function computeTaxes()

@@ -6,7 +6,6 @@ namespace Tipoff\Bookings\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Bookings\Models\Booking;
-use Tipoff\Bookings\Models\BookingCategory;
 use Tipoff\Bookings\Tests\TestCase;
 
 class BookingModelTest extends TestCase
