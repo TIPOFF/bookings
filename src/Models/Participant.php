@@ -13,8 +13,6 @@ use Tipoff\Support\Traits\HasUpdater;
 class Participant extends BaseModel
 {
     use HasPackageFactory;
-    // Todo: Should this still be included?
-    //use HasMedia;
     use HasCreator;
     use HasUpdater;
     use SoftDeletes;
