@@ -14,10 +14,10 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('slot_number')->nullable();
             $table->integer('total_participants')->nullable();
-            $table->double('total_amount', 8, 2);
-            $table->double('amount', 8, 2)->nullable();
-            $table->double('total_taxes', 8, 2)->nullable();
-            $table->double('total_fees', 8, 2)->nullable();
+            $table->unsignedInteger('total_amount');
+            $table->unsignedInteger('amount')->nullable();
+            $table->unsignedInteger('total_taxes')->nullable();
+            $table->unsignedInteger('total_fees')->nullable();
             $table->morphs('variation')->nullable();
             $table->morphs('experience')->nullable();
             $table->morphs('order')->nullable();
