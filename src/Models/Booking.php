@@ -98,16 +98,6 @@ class Booking extends BaseModel
         return $this->belongsTo(BookingCategory::class);
     }
 
-    public function variation()
-    {
-        return $this->morphTo();
-    }
-
-    public function experience()
-    {
-        return $this->morphTo();
-    }
-
     public function subject()
     {
         return $this->morphTo();
