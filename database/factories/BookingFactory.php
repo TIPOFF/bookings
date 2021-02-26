@@ -33,7 +33,7 @@ class BookingFactory extends Factory
             'total_taxes'           => $this->faker->numberBetween(0, 10),
             'total_fees'            => $this->faker->numberBetween(0, 10),
             'booking_category_id'   => BookingCategory::factory()->create()->id,
-            'booking_status_id'     => BookingStatus::factory()->create()->id
+//            'booking_status_id'     => BookingStatus::factory()->create()->id
         ];
     }
 }
