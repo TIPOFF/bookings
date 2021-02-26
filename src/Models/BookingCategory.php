@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Bookings\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tipoff\Support\Models\BaseModel;
-use Tipoff\Bookings\Models\Booking;
 
 class BookingCategory extends BaseModel
 {
@@ -18,6 +15,6 @@ class BookingCategory extends BaseModel
 
     public function bookings()
     {
-    	return $this->hasMany(Booking::class);
+        return $this->hasMany(Booking::class);
     }
 }
