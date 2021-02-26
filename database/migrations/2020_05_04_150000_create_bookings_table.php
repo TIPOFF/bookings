@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Tipoff\Bookings\Models\BookingCategory;
+use Tipoff\Bookings\Models\BookingStatus;
 
 class CreateBookingsTable extends Migration
 {
@@ -28,9 +30,9 @@ class CreateBookingsTable extends Migration
             $table->morphs('agent')->nullable();
             $table->morphs('user')->nullable();
             $table->morphs('subject')->nullable();
+            $table->datetime('proccessed_at')->nullable();;
+            $table->datetime('canceled_at')->nullable();;
             $table->timestamps();
-            $table->date('proccessed_at')->nullable();;
-            $table->date('canceled_at')->nullable();;
         });
     }
 }

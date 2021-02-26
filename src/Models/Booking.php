@@ -5,82 +5,29 @@ declare(strict_types=1);
 namespace Tipoff\Bookings\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasCreator;
+use Tipoff\Support\Traits\HasPackageFactory;
+use Tipoff\Support\Traits\HasUpdater;
 
 class Booking extends BaseModel
 {
-    use HasFactory;
-
-    protected $casts = [
-    ];
+    use HasPackageFactory;
+    use HasCreator;
+    use HasUpdater;
 
     protected $with = [
+        'variation',
+        'experience',
         'order',
+        'agent',
+        'user',
+        'subject',
     ];
-
-    protected $appends = [
-        'date',
-    ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::saving(function ($booking) {
-            if (empty($booking->order_id)) {
-                throw new \Exception('A booking must be part of an order.');
-            }
-            if (empty($booking->slot_id)) {
-                throw new \Exception('A booking must be for an availability slot.');
-            }
-        });
-    }
-
-    /**
-     * Generate amount, total_taxes and total_fees.
-     *
-     * !!! This funcionaly is uswed mainly by seeder !!!
-     *
-     * @return void
-     */
-    public function generatePricing()
-    {
-        if (empty($this->rate_id)) {
-            $this->rate_id = $this->slot->rate_id;
-        }
-        if (empty($this->tax_id)) {
-            $this->tax_id = $this->slot->location->booking_tax_id;
-        }
-        if (empty($this->fee_id)) {
-            $this->fee_id = $this->slot->location->booking_fee_id;
-        }
-
-        $this->amount = $this->computeAmount();
-        $this->total_taxes = $this->computeTaxes();
-        $this->total_fees = $this->computeFees();
-    }
-
-    public function computeAmount()
-    {
-        if ($this->is_private) {
-            $ratefield = 'private_'.$this->participants;
-        } else {
-            $ratefield = 'public_'.$this->participants;
-        }
-
-        return $this->participants * $this->rate->{ $ratefield };
-    }
 
     public function computeTaxes()
     {
         return $this->amount * ($this->tax->percent / 100);
-    }
-
-    public function computeFees()
-    {
-        // @todo Need to finsih this with the different ways fees can be applied.
-        return 0;
     }
 
     public function scopeYesterday($query)
@@ -115,23 +62,30 @@ class Booking extends BaseModel
         return $query->where('created_at', '>=', $start)->where('created_at', '<=', $end);
     }
 
-    public function getDetailsAttribute()
+    // Todo: Determine Morph Relation Type
+    public function variation()
     {
-        $date = strtoupper($this->slot->getCarbonStartAt()->setTimezone($this->slot->room->location->php_tz)->format('D\, M j'));
-        $arrival = $this->slot->getCarbonStartAt()->setTimezone($this->slot->room->location->php_tz)->subMinutes(15)->format('g:i A');
-        $start = $this->slot->getCarbonStartAt()->setTimezone($this->slot->room->location->php_tz)->format('g:i A');
-
-        return $date.' ⬩ ARRIVE BY '.$arrival.' ⬩ STARTS AT '.$start;
+        return $this->morphToMany(app('variation'), 'variation');
     }
 
-    public function getSlotStartAttribute()
+    public function experience()
     {
-        return $this->slot->start_at;
+        return $this->morphToMany(app('experience'), 'experience');
     }
 
-    public function getDateAttribute()
+    public function order()
     {
-        return Carbon::parse($this->created_at)->setTimeZone($this->order->location->php_tz)->toDateString();
+        return $this->morphToMany(app('order'), 'order');
+    }
+
+    public function agent()
+    {
+        return $this->morphToMany(app('agent'), 'agent');
+    }
+
+    public function user()
+    {
+        return $this->morphToMany(app('user'), 'user');
     }
 
     public function bookingStatus()
@@ -150,16 +104,6 @@ class Booking extends BaseModel
     }
 
     public function experience()
-    {
-        return $this->morphTo();
-    }
-
-    public function order()
-    {
-        return $this->morphTo();
-    }
-
-    public function agent()
     {
         return $this->morphTo();
     }
