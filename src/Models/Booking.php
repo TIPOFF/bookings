@@ -7,6 +7,8 @@ namespace Tipoff\Bookings\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Bookings\Models\BookingStatus;
+use Tipoff\Bookings\Models\BookingCategory;
 
 class Booking extends BaseModel
 {
@@ -17,7 +19,6 @@ class Booking extends BaseModel
 
     protected $with = [
         'order',
-        'slot',
     ];
 
     protected $appends = [
@@ -135,48 +136,39 @@ class Booking extends BaseModel
         return Carbon::parse($this->created_at)->setTimeZone($this->order->location->php_tz)->toDateString();
     }
 
+    public function bookingStatus()
+    {
+        return $this->belongsTo(BookingStatus::class);
+    }
+
+    public function bookingCategory()
+    {
+        return $this->belongsTo(BookingCategory::class);
+    }
+
+    public function variation()
+    {
+        return $this->morphTo();
+    }
+
+    public function experience()
+    {
+        return $this->morphTo();
+    }
+
     public function order()
     {
-        return $this->belongsTo(app('order'));
+        return $this->morphTo();
     }
 
-    public function slot()
+    public function agent()
     {
-        return $this->belongsTo(app('slot'));
+        return $this->morphTo();
     }
 
-    public function room()
+    public function subject()
     {
-        return $this->hasOneThrough(app('room'), app('slot'), 'id', 'id', 'slot_id', 'room_id');
+        return $this->morphTo();
     }
 
-    public function rate()
-    {
-        return $this->belongsTo(app('rate'));
-    }
-
-    public function tax()
-    {
-        return $this->belongsTo(app('tax'));
-    }
-
-    public function fee()
-    {
-        return $this->belongsTo(app('fee'));
-    }
-
-    public function participants()
-    {
-        return $this->belongsToMany(app('participant'));
-    }
-
-    public function signatures()
-    {
-        return $this->hasMany(app('signature'));
-    }
-
-    public function notes()
-    {
-        return $this->morphMany(app('note'), 'noteable');
-    }
 }
