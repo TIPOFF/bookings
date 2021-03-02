@@ -12,7 +12,7 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(app('user'))->nullable();
+            $table->foreignIdFor(app('user'))->nullable()->index();
             $table->string('email')->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
