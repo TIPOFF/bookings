@@ -13,9 +13,10 @@ class ParticipantModelTest extends TestCase
     use DatabaseTransactions;
 
     /** @test */
-    public function create()
+    public function participant_seeded()
     {
-        $model = Participant::factory()->create();
-        $this->assertNotNull($model);
+        /** @var Participant $participant */
+        $participant = Participant::factory()->create();
+        $this->assertNotNull($participant);
     }
 }

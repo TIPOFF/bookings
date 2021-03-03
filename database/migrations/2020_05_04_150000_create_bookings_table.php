@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Tipoff\Bookings\Models\BookingCategory;
+use Tipoff\Bookings\Models\BookingStatus;
 
 class CreateBookingsTable extends Migration
 {
@@ -12,16 +14,24 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(app('order'));
-            $table->foreignIdFor(app('slot'));
-            $table->unsignedTinyInteger('participants');
-            $table->boolean('is_private')->default(false);
-            $table->unsignedInteger('amount'); // Amount is in cents. It is net, excluding taxes and fees. An accessor for total_amount adds the 3 columns
-            $table->unsignedInteger('total_taxes'); // Taxes is in cents. Computed from attached tax.
-            $table->unsignedInteger('total_fees'); // Processing Fees is in cents. Computed from attached fee.
-            $table->foreignIdFor(app('rate'))->nullable(); // Pricing rate structure used on this booking
-            $table->foreignIdFor(app('tax'))->nullable(); // Tax rate used on this booking
-            $table->foreignIdFor(app('fee'))->nullable(); // Processing fee used on this booking
+            $table->string('slot_number')->nullable();
+            $table->integer('total_participants')->nullable();
+            $table->unsignedInteger('total_amount');
+            $table->unsignedInteger('amount')->nullable();
+            $table->unsignedInteger('total_taxes')->nullable();
+            $table->unsignedInteger('total_fees')->nullable();
+//            $table->morphs('variation')->nullable();
+//            $table->morphs('experience')->nullable();
+//            $table->morphs('order')->nullable();
+            $table->unsignedBigInteger('booking_category_id');
+            $table->foreign('booking_category_id')->references('id')->on('booking_categories');
+//            $table->unsignedBigInteger('booking_status_id');
+//            $table->foreign('booking_status_id')->references('id')->on('booking_status');
+//            $table->morphs('agent')->nullable();
+//            $table->morphs('user')->nullable();
+//            $table->morphs('subject')->nullable();
+            $table->datetime('proccessed_at')->nullable();;
+            $table->datetime('canceled_at')->nullable();;
             $table->timestamps();
         });
     }
