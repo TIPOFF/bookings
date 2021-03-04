@@ -20,15 +20,17 @@ class ParticipantFactory extends Factory
      * Define the model's default state.
      *
      * @return array
+     * @throws \Exception
      */
     public function definition()
     {
         return [
-            'user_id'   => randomOrCreate(app('user')),
-            'email'     => $this->faker->unique()->safeEmail,
-            'name'      => $this->faker->firstName,
-            'name_last' => $this->faker->lastName,
-            'dob'       => $this->faker->date('Y-m-d', '-18 years')
+//            'user_id'               => randomOrCreate(app('user')),
+            'email'                 => $this->faker->unique()->safeEmail,
+            'first_name'            => $this->faker->firstName,
+            'last_name'             => $this->faker->lastName,
+            'birth_date'            => $this->faker->date('Y-m-d'),
+            'is_verified'           => false
         ];
     }
 }

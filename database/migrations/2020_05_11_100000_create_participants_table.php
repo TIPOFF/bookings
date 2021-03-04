@@ -14,9 +14,10 @@ class CreateParticipantsTable extends Migration
             $table->id();
             $table->foreignIdFor(app('user'))->nullable()->index();
             $table->string('email')->unique();
-            $table->string('name')->nullable(); // first name
-            $table->string('name_last')->nullable();
-            $table->date('dob')->nullable(); // date of birth
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->softDeletes(); // Soft delete if the participant email address bounces
             $table->timestamps();
         });

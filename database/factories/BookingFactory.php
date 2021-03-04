@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -6,6 +6,8 @@ namespace Tipoff\Bookings\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tipoff\Bookings\Models\Booking;
+use Tipoff\Bookings\Models\BookingCategory;
+use Tipoff\Bookings\Models\BookingStatus;
 
 class BookingFactory extends Factory
 {
@@ -24,11 +26,14 @@ class BookingFactory extends Factory
     public function definition()
     {
         return [
-            'order_id'     => randomOrCreate(app('order')),
-            // @todo need to limit slots to just the ones for a room at the location of the order.
-            'slot_id'      => randomOrCreate(app('slot')),
-            'participants' => $this->faker->numberBetween(1, 10),
-            'is_private'   => $this->faker->boolean,
+            'slot_number'           => $this->faker->numberBetween(0, 10),
+            'total_participants'    => $this->faker->numberBetween(0, 10),
+            'total_amount'          => $this->faker->numberBetween(0, 10),
+            'amount'                => $this->faker->numberBetween(0, 10),
+            'total_taxes'           => $this->faker->numberBetween(0, 10),
+            'total_fees'            => $this->faker->numberBetween(0, 10),
+            'booking_category_id'   => BookingCategory::factory()->create()->id,
+//            'booking_status_id'     => BookingStatus::factory()->create()->id
         ];
     }
 }
