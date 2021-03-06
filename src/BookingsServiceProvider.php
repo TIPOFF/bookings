@@ -6,7 +6,6 @@ namespace Tipoff\Bookings;
 
 use Tipoff\Bookings\Models\Booking;
 use Tipoff\Bookings\Models\Participant;
-use Tipoff\Bookings\Models\Slot;
 use Tipoff\Bookings\Policies\BookingPolicy;
 use Tipoff\Bookings\Policies\ParticipantPolicy;
 use Tipoff\Support\TipoffPackage;
