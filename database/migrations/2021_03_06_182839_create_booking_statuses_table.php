@@ -6,11 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingCategoriesTable extends Migration
+class CreateBookingStatusesTable extends Migration
 {
     public function up()
     {
-        Schema::create('booking_categories', function (Blueprint $table) {
+        Schema::create('booking_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('label');
             $table->timestamps();
