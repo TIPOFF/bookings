@@ -17,6 +17,7 @@ class CreateRatesTable extends Migration
             $table->string('rate_type');
             $table->unsignedInteger('participants_limit');
             $table->foreignIdFor(app('user'), 'creator_id');
+            $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
         });
     }
