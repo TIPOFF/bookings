@@ -11,7 +11,11 @@ class AddBookingPermissions extends BasePermissionsMigration
         $permissions = [
             'view bookings',
             'create bookings',
-            'update bookings'
+            'update bookings',
+            'view participants',
+            'view slots',
+            'create slots',
+            'update slots',
         ];
 
         $this->createPermissions($permissions);
