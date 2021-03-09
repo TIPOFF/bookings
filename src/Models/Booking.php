@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Tipoff\Bookings\Models;
 
 use Carbon\Carbon;
-use Tipoff\Support\Contracts\Checkout\CartInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
 
-class Booking extends BaseModel implements CartInterface
+//Todo: Implement booking interfaces
+class Booking extends BaseModel
 {
     use HasPackageFactory;
     use HasCreator;
@@ -31,13 +31,27 @@ class Booking extends BaseModel implements CartInterface
      */
     public function generatePricing()
     {
-        if (empty($booking->slot_number)) {
-            throw new \Exception('A booking must be for an availability slot.');
-        }
+        $this->total_taxes = $this->getTotalTaxes();
+        $this->total_amount = $this->getAmountTotal();
+        $this->fees = $this->getTotalFees();
+    }
 
-        $this->total_taxes = $this->getTax();
-        $this->total_amount = $this->getItemAmountTotal();
-        // $this->fees = '';
+    public function getTotalTaxes()
+    {
+        // @todo: implement taxing
+        return null;
+    }
+
+    public function getAmountTotal()
+    {
+        // @todo: implement amounts
+        return null;
+    }
+
+    public function getTotalFees()
+    {
+        // @todo: implement fees
+        return null;
     }
 
     public function scopeYesterday($query)
