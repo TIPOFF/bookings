@@ -23,8 +23,7 @@ class CreateBookingsTable extends Migration
             $table->morphs(app('variation'));
             $table->morphs(app('experience'));
             $table->morphs(app('order'));
-            $table->unsignedBigInteger('booking_category_id');
-            $table->foreign('booking_category_id')->references('id')->on('booking_categories');
+            $table->foreignIdFor(BookingCategory::class);
             $table->unsignedBigInteger('booking_status_id');
             $table->foreign('booking_status_id')->references('id')->on('booking_status');
             $table->morphs(app('agent'));
