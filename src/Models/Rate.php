@@ -29,12 +29,13 @@ class Rate extends Model
             if (auth()->check()) {
                 $rate->updater_id = auth()->id();
             }
-            if (empty($rate->slug)) {
-                throw new \Exception('A rate must have a slug.');
-            }
-            if (empty($rate->amount)) {
-                throw new \Exception('A rate must have a base amount.');
-            }
+            //Todo: Implement BookingRateInterface
+//            if (empty($rate->getSlug())) {
+//                throw new \Exception('A rate must have a slug.');
+//            }
+//            if (empty($rate->getAmount())) {
+//                throw new \Exception('A rate must have a base amount.');
+//            }
         });
     }
 
