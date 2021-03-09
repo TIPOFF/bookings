@@ -14,6 +14,6 @@ class NovaPackageServiceProvider extends BaseNovaPackageServiceProvider
     public static array $packageResources = [
         Booking::class,
         Participant::class,
-        Rate::class
+        Rate::class,
     ];
 }
