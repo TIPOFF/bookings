@@ -32,8 +32,8 @@ class Booking extends BaseResource
     /** @psalm-suppress UndefinedClass */
     protected array $filterClassList = [
         \Tipoff\Bookings\Nova\Filters\RealizedBookings::class,
-        \Tipoff\Scheduling\Nova\Filters\SlotRoom::class,
-        \Tipoff\Bookings\Nova\Filters\SlotDayFilter::class,
+        \Tipoff\Scheduler\Nova\Filters\SlotRoom::class,
+        \Tipoff\Scheduler\Nova\Filters\SlotDayFilter::class,
         \Tipoff\Locations\Nova\Filters\OrderLocation::class,
     ];
 
