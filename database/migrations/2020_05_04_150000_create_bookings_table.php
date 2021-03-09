@@ -7,6 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Tipoff\Bookings\Models\BookingCategory;
 use Tipoff\Bookings\Models\BookingStatus;
+use Tipoff\Bookings\Models\Rate;
 
 class CreateBookingsTable extends Migration
 {
@@ -20,9 +21,9 @@ class CreateBookingsTable extends Migration
             $table->unsignedInteger('amount');
             $table->unsignedInteger('total_taxes');
             $table->unsignedInteger('total_fees');
-            $table->morphs(app('variation'));
             $table->morphs(app('experience'));
             $table->morphs(app('order'));
+            $table->foreignIdFor(Rate::class);
             $table->foreignIdFor(BookingCategory::class);
             $table->unsignedBigInteger('booking_status_id');
             $table->foreign('booking_status_id')->references('id')->on('booking_status');

@@ -17,7 +17,7 @@ class Booking extends BaseModel
     use HasUpdater;
 
     protected $with = [
-        'variation',
+        'rate',
         'experience',
         'order',
         'agent',
@@ -25,9 +25,17 @@ class Booking extends BaseModel
         'subject',
     ];
 
-    public function computeTaxes()
+    /**
+     * Generate amount, total_taxes and total_fees.
+     */
+    public function generatePricing()
     {
-        return $this->amount * ($this->tax->percent / 100);
+        if (empty($booking->slot_number)) {
+            throw new \Exception('A booking must be for an availability slot.');
+        }
+
+        //Added this method back
+        //Todo: use CartInterface for price generation
     }
 
     public function scopeYesterday($query)
