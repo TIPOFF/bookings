@@ -27,6 +27,7 @@ class RateFactory extends Factory
         $types = ['public', 'private'];
         return [
             'slug'                  => $this->faker->slug,
+            'name'                  => $this->faker->name,
             'amount'                => $this->faker->numberBetween(0, 9999),
             'rate_type'             => $types[array_rand($types)],
             'participant_limit'     => $this->faker->numberBetween(0, 100),

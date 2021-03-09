@@ -14,6 +14,7 @@ class CreateRatesTable extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
+            $table->string('name');
             $table->unsignedInteger('amount');
             $table->string('rate_type');
             $table->foreignIdFor(RateCategory::class);
