@@ -25,7 +25,7 @@ class BookingCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->text
+            'label' => $this->faker->text
         ];
     }
 }
