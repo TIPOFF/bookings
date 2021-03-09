@@ -64,7 +64,7 @@ class Rate extends BaseResource
                 })
                 ->fillUsing(function ($request, $model, $attribute) {
                     $model->$attribute = $request->$attribute * 100;
-                })->required()
+                })->required(),
         ];
     }
 
