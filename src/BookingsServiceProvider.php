@@ -27,7 +27,7 @@ class BookingsServiceProvider extends TipoffServiceProvider
                 BookingCategory::class => BookingCategoryPolicy::class,
                 Participant::class => ParticipantPolicy::class,
                 Rate::class => RatePolicy::class,
-                RateCategory::class => RateCategoryPolicy::class
+                RateCategory::class => RateCategoryPolicy::class,
             ])
             ->hasNovaResources([
                 \Tipoff\Bookings\Nova\Booking::class,
