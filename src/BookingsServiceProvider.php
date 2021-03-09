@@ -23,6 +23,7 @@ class BookingsServiceProvider extends TipoffServiceProvider
             ->hasNovaResources([
                 \Tipoff\Bookings\Nova\Booking::class,
                 \Tipoff\Bookings\Nova\Participant::class,
+                \Tipoff\Bookings\Nova\Rate::class,
             ])
             ->name('bookings')
             ->hasConfigFile();
