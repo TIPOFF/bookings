@@ -39,24 +39,19 @@ class Rate extends Model
         });
     }
 
+    public function getSlug()
+    {
+        // @todo Slug Interface method
+    }
+
+    public function getAmount()
+    {
+        // @todo Amount Interface method
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    /**
-     * Generate amount.
-     *
-     * @param int $participants
-     * @param bool $isPrivate
-     * @return int
-     */
-    public function getAmount(int $participants, bool $isPrivate)
-    {
-        $key = ($isPrivate) ? 'private_' : 'public_';
-        $key = $key.$participants;
-
-        return $this->$key * $participants;
     }
 
     public function creator()
