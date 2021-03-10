@@ -9,6 +9,7 @@ use Tipoff\Bookings\Models\Participant;
 use Tipoff\Bookings\Models\Slot;
 use Tipoff\Bookings\Policies\BookingPolicy;
 use Tipoff\Bookings\Policies\ParticipantPolicy;
+use Tipoff\Bookings\Policies\SlotPolicy;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
@@ -20,7 +21,7 @@ class BookingsServiceProvider extends TipoffServiceProvider
             ->hasPolicies([
                 Booking::class => BookingPolicy::class,
                 Participant::class => ParticipantPolicy::class,
-                Slot::class => Slot::class,
+                Slot::class => SlotPolicy::class,
             ])
             ->hasNovaResources([
                 \Tipoff\Bookings\Nova\Booking::class,
