@@ -13,6 +13,6 @@ class AddBookingStatuses extends Migration
             'Pending',
             'Cancelled',
             'Confirmed',
-        ])
+        ]);
     }
 }
