@@ -18,9 +18,8 @@
         "php": "^7.4|^8.0",
         "dniccum/phone-number": "^1.1",
         "inspheric/nova-email-field": "^1.42",
-        "tipoff/authorization": "^2.5.0",
+        "tipoff/authorization": "^2.5.1",
         "tipoff/checkout": "^2.4.0",
-        "tipoff/statuses": "^2.0.2",
         "tipoff/support": "^1.6.0"
     },
     "require-dev": {
