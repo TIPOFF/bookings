@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tipoff\Bookings\Models;
 
-use Carbon\Carbon;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
