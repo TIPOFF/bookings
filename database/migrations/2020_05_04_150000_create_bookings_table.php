@@ -7,6 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Tipoff\Bookings\Models\BookingCategory;
 use Tipoff\Bookings\Models\BookingStatus;
+use Tipoff\Bookings\Models\Rate;
 
 class CreateBookingsTable extends Migration
 {
@@ -14,24 +15,23 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('slot_number')->nullable();
-            $table->integer('total_participants')->nullable();
+            $table->string('slot_number');
+            $table->integer('total_participants');
             $table->unsignedInteger('total_amount');
-            $table->unsignedInteger('amount')->nullable();
-            $table->unsignedInteger('total_taxes')->nullable();
-            $table->unsignedInteger('total_fees')->nullable();
-//            $table->morphs('variation')->nullable();
-//            $table->morphs('experience')->nullable();
-//            $table->morphs('order')->nullable();
-            $table->unsignedBigInteger('booking_category_id');
-            $table->foreign('booking_category_id')->references('id')->on('booking_categories');
-//            $table->unsignedBigInteger('booking_status_id');
-//            $table->foreign('booking_status_id')->references('id')->on('booking_status');
-//            $table->morphs('agent')->nullable();
-//            $table->morphs('user')->nullable();
-//            $table->morphs('subject')->nullable();
-            $table->datetime('proccessed_at')->nullable();;
-            $table->datetime('canceled_at')->nullable();;
+            $table->unsignedInteger('amount');
+            $table->unsignedInteger('total_taxes');
+            $table->unsignedInteger('total_fees');
+            $table->morphs(app('experience'));
+            $table->morphs(app('order'));
+            $table->foreignIdFor(Rate::class);
+            $table->foreignIdFor(BookingCategory::class);
+            $table->unsignedBigInteger('booking_status_id');
+            $table->foreign('booking_status_id')->references('id')->on('booking_status');
+            $table->morphs(app('agent'));
+            $table->morphs(app('user'));
+            $table->morphs(app('subject'));
+            $table->datetime('proccessed_at');
+            $table->datetime('canceled_at');
             $table->timestamps();
         });
     }
