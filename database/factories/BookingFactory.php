@@ -32,9 +32,21 @@ class BookingFactory extends Factory
             'amount'                => $this->faker->numberBetween(0, 10),
             'total_taxes'           => $this->faker->numberBetween(0, 10),
             'total_fees'            => $this->faker->numberBetween(0, 10),
-            'booking_category_id'   => BookingCategory::factory()->create()->id,
-            'rate_id'               => Rate::factory()->create()->id,
-            //Todo: Add morph factories
+            'booking_category_id'   => randomOrCreate(app('booking_category')),
+            'rate_id'               => randomOrCreate(app('rate')),
+            'experience_id'         => $this->faker->numberBetween(0, 10),
+            'experience_type'       => 'Game',
+            'order_id'              => $this->faker->numberBetween(0, 10),
+            'order_type'            => 'Order',
+            'booking_status_id'     => '1',
+            'agent_id'              => $this->faker->numberBetween(0, 10),
+            'agent_type'            => 'Agent',
+            'user_id'               => $this->faker->numberBetween(0, 10),
+            'user_type'             => 'User',
+            'subject_id'            => $this->faker->numberBetween(0, 10),
+            'subject_type'          => 'Subject',        
+            'proccessed_at'         => $this->faker->dateTimeBetween('+0 days', '+2 years'),        
+            'canceled_at'           => $this->faker->dateTimeBetween('+0 days', '+2 years'),        
         ];
     }
 }
