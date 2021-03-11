@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Tipoff\Bookings\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasPackageFactory;
 
-class Rate extends Model
+class Rate extends BaseModel
 {
-    use HasFactory;
+    use HasPackageFactory;
 
     protected $guarded = ['id'];
     protected $casts = [
