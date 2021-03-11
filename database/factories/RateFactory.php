@@ -30,10 +30,11 @@ class RateFactory extends Factory
             'name'                  => $this->faker->name,
             'amount'                => $this->faker->numberBetween(0, 9999),
             'rate_type'             => $types[array_rand($types)],
-            'participant_limit'     => $this->faker->numberBetween(0, 100),
+            'participants_limit'    => $this->faker->numberBetween(0, 100),
             'rate_category_id'      => RateCategory::factory()->create()->id,
+            'booking_id'            => randomOrCreate(app('booking')),
             'creator_id'            => randomOrCreate(app('user')),
-            'updater_id'            => randomOrCreate(app('user'))
+            'updater_id'            => randomOrCreate(app('user')),
         ];
     }
 }
