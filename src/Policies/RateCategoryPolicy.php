@@ -24,12 +24,12 @@ class RateCategoryPolicy
 
     public function create(UserInterface $user): bool
     {
-        return false;
+        return $user->hasPermissionTo('create rate categories') ? true : false;
     }
 
     public function update(UserInterface $user, RateCategory $rate_category): bool
     {
-        return false;
+        return $user->hasPermissionTo('update rate categories') ? true : false;
     }
 
     public function delete(UserInterface $user, RateCategory $rate_category): bool
