@@ -24,12 +24,12 @@ class BookingCategoryPolicy
 
     public function create(UserInterface $user): bool
     {
-        return false;
+        return $user->hasPermissionTo('create booking categories') ? true : false;
     }
 
     public function update(UserInterface $user, BookingCategory $booking_category): bool
     {
-        return false;
+        return $user->hasPermissionTo('update booking categories') ? true : false;
     }
 
     public function delete(UserInterface $user, BookingCategory $booking_category): bool
