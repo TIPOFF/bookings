@@ -21,7 +21,7 @@
         "tipoff/authorization": "^2.5.0",
         "tipoff/checkout": "^2.4.0",
         "tipoff/statuses": "^2.0.2",
-        "tipoff/support": "^1.5.12"
+        "tipoff/support": "^1.6.0"
     },
     "require-dev": {
         "tipoff/test-support": "^1.2.0"
