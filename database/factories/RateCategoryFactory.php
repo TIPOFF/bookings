@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Tipoff\Bookings\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Tipoff\Bookings\Models\BookingCategory;
+use Tipoff\Bookings\Models\RateCategory;
 
-class BookingCategoryFactory extends Factory
+class RateCategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = BookingCategory::class;
+    protected $model = RateCategory::class;
 
     /**
      * Define the model's default state.
@@ -25,7 +25,8 @@ class BookingCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'label' => $this->faker->text
+            'slug' => $this->faker->url,
+            'name' => $this->faker->name
         ];
     }
 }

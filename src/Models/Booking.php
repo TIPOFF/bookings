@@ -10,6 +10,7 @@ use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
 
+//Todo: Implement booking interfaces
 class Booking extends BaseModel
 {
     use HasPackageFactory;
@@ -17,7 +18,7 @@ class Booking extends BaseModel
     use HasUpdater;
 
     protected $with = [
-        'variation',
+        'rate',
         'experience',
         'order',
         'agent',
@@ -25,9 +26,32 @@ class Booking extends BaseModel
         'subject',
     ];
 
-    public function computeTaxes()
+    /**
+     * Generate amount, total_taxes and total_fees.
+     */
+    public function generatePricing()
     {
-        return $this->amount * ($this->tax->percent / 100);
+        $this->total_taxes = $this->getTotalTaxes();
+        $this->total_amount = $this->getAmountTotal();
+        $this->fees = $this->getTotalFees();
+    }
+
+    public function getTotalTaxes()
+    {
+        // @todo: implement taxing
+        return null;
+    }
+
+    public function getAmountTotal()
+    {
+        // @todo: implement amounts
+        return null;
+    }
+
+    public function getTotalFees()
+    {
+        // @todo: implement fees
+        return null;
     }
 
     public function scopeYesterday($query)
