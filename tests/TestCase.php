@@ -11,6 +11,7 @@ use Tipoff\Bookings\BookingsServiceProvider;
 use Tipoff\Bookings\Tests\Support\Providers\NovaPackageServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
 use Tipoff\TestSupport\BaseTestCase;
+use Tipoff\Statuses\StatusesServiceProvider;
 
 class TestCase extends BaseTestCase
 {
@@ -23,6 +24,7 @@ class TestCase extends BaseTestCase
             BookingsServiceProvider::class,
             NovaCoreServiceProvider::class,
             NovaPackageServiceProvider::class,
+            StatusesServiceProvider::class,
         ];
     }
 }
