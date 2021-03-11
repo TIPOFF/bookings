@@ -24,12 +24,12 @@ class RatePolicy
 
     public function create(UserInterface $user): bool
     {
-        return false;
+        return $user->hasPermissionTo('create rates') ? true : false;
     }
 
     public function update(UserInterface $user, Rate $rate): bool
     {
-        return false;
+        return $user->hasPermissionTo('update rates') ? true : false;
     }
 
     public function delete(UserInterface $user, Rate $rate): bool
