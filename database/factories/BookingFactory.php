@@ -7,7 +7,7 @@ namespace Tipoff\Bookings\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tipoff\Bookings\Models\Booking;
 use Tipoff\Bookings\Models\BookingCategory;
-use Tipoff\Bookings\Models\BookingStatus;
+use Tipoff\Bookings\Models\Rate;
 
 class BookingFactory extends Factory
 {
@@ -33,7 +33,8 @@ class BookingFactory extends Factory
             'total_taxes'           => $this->faker->numberBetween(0, 10),
             'total_fees'            => $this->faker->numberBetween(0, 10),
             'booking_category_id'   => BookingCategory::factory()->create()->id,
-//            'booking_status_id'     => BookingStatus::factory()->create()->id
+            'rate_id'               => Rate::factory()->create()->id,
+            //Todo: Add morph factories
         ];
     }
 }
