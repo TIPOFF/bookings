@@ -14,6 +14,7 @@ class CreateRateCategoriesTable extends Migration
             $table->id();
             $table->string('slug');
             $table->string('name');
+            $table->timestamps();
         });
     }
 }

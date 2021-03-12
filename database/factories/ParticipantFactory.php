@@ -25,12 +25,14 @@ class ParticipantFactory extends Factory
     public function definition()
     {
         return [
-//            'user_id'               => randomOrCreate(app('user')),
             'email'                 => $this->faker->unique()->safeEmail,
             'first_name'            => $this->faker->firstName,
             'last_name'             => $this->faker->lastName,
             'birth_date'            => $this->faker->date('Y-m-d'),
-            'is_verified'           => false
+            'is_verified'           => false,
+            'user_id'               => randomOrCreate(app('user')),
+            'user_type'             => 'User',
+            'booking_id'            => randomOrCreate(app('booking')),
         ];
     }
 }
