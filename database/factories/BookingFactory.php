@@ -38,7 +38,7 @@ class BookingFactory extends Factory
             'experience_type'       => 'Game',
             'order_id'              => $this->faker->numberBetween(0, 10),
             'order_type'            => 'Order',
-            'booking_status_id'     => '1',
+            'booking_status_id'     => randomOrCreate(app('status')),
             'agent_id'              => $this->faker->numberBetween(0, 10),
             'agent_type'            => 'Agent',
             'user_id'               => $this->faker->numberBetween(0, 10),
