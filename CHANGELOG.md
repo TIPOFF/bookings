@@ -20,3 +20,8 @@ All notable changes to `bookings` will be documented in this file.
 - register policies
 - add nova resources
 - register nova resources
+
+## 2.1.0 - 2021-03-11
+
+- updated models
+- first version of base booking service
