@@ -94,7 +94,7 @@ class Booking extends BaseModel
 
     public function experience()
     {
-        return $this->morphToMany(app('experience'), 'experience');
+        return $this->morphTo();
     }
 
     public function order()
