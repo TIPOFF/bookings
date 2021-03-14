@@ -35,11 +35,15 @@ return [
 
 ## Models
 
-We include the following model in this package:
+We include the following models in this package:
 
 **List of Models**
 
 - Booking
+- Booking Category
+- Participant
+- Rate
+- Rate Category
 
 For each of these models, this package implements an [authorization policy](https://laravel.com/docs/8.x/authorization) that extends the roles and permissions approach of the [tipoff/authorization](https://github.com/tipoff/authorization) package. The policies for each model in this package are registered through the package and do not need to be registered manually.
 
