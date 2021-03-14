@@ -9,19 +9,19 @@ class AddBookingPermissions extends BasePermissionsMigration
     public function up()
     {
         $permissions = [
-            'view bookings' => ['Owner', 'Staff'],
-            'create bookings' => ['Owner'],
-            'update bookings' => ['Owner'],
-            'view booking categories' => ['Owner', 'Staff'],
-            'create booking categories' => ['Owner'],
-            'update booking categories' => ['Owner'],
-            'view participants' => ['Owner', 'Staff'],
-            'view rates' => ['Owner', 'Staff'],
-            'create rates' => ['Owner'],
-            'update rates' => ['Owner'],
-            'view rate categories' => ['Owner', 'Staff'],
-            'create rate categories' => ['Owner'],
-            'update rate categories' => ['Owner'],
+            'view bookings' => ['Owner', 'Executive', 'Staff'],
+            'create bookings' => ['Owner', 'Executive'],
+            'update bookings' => ['Owner', 'Executive'],
+            'view booking categories' => ['Owner', 'Executive', 'Staff'],
+            'create booking categories' => ['Owner', 'Executive'],
+            'update booking categories' => ['Owner', 'Executive'],
+            'view participants' => ['Owner', 'Executive', 'Staff'],
+            'view rates' => ['Owner', 'Executive', 'Staff'],
+            'create rates' => ['Owner', 'Executive'],
+            'update rates' => ['Owner', 'Executive'],
+            'view rate categories' => ['Owner', 'Executive', 'Staff'],
+            'create rate categories' => ['Owner', 'Executive'],
+            'update rate categories' => ['Owner', 'Executive'],
         ];
 
         $this->createPermissions($permissions);
