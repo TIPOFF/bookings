@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tipoff\Bookings\Models;
 
 use Carbon\Carbon;
+use Tipoff\Statuses\Traits\HasStatuses;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -16,6 +17,7 @@ class Booking extends BaseModel
     use HasPackageFactory;
     use HasCreator;
     use HasUpdater;
+    use HasStatuses;
 
     protected $with = [
         'rate',
