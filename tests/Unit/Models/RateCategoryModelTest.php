@@ -16,7 +16,7 @@ class RateCategoryModelTest extends TestCase
     /** @test */
     public function rate_category_seeded()
     {
-    	$this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create());
 
         $rate_category = RateCategory::factory()->create();
 

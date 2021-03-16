@@ -16,7 +16,7 @@ class BookingCategoryModelTest extends TestCase
     /** @test */
     public function booking_category_seeded()
     {
-    	$this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create());
 
         $booking_category = BookingCategory::factory()->create();
 

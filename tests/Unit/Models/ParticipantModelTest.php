@@ -16,7 +16,7 @@ class ParticipantModelTest extends TestCase
     /** @test */
     public function participant_seeded()
     {
-    	$this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create());
 
         $participant = Participant::factory()->create();
 

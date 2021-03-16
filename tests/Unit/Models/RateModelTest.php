@@ -16,7 +16,7 @@ class RateModelTest extends TestCase
     /** @test */
     public function rate_seeded()
     {
-    	$this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create());
 
         $rate = Rate::factory()->create();
 

@@ -17,7 +17,7 @@ class BookingModelTest extends TestCase
     /** @test */
     public function booking_seeded()
     {
-    	$this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create());
 
         $booking = Booking::factory()->create();
 
@@ -27,7 +27,7 @@ class BookingModelTest extends TestCase
     /** @test */
     public function can_set_status()
     {
-    	$this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create());
         $booking = Booking::factory()->create();
 
         $booking->setBookingStatus(BookingStatus::COMPLETE());
