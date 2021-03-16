@@ -14,6 +14,8 @@ class CreateRateCategoriesTable extends Migration
             $table->id();
             $table->string('slug');
             $table->string('name');
+            $table->foreignIdFor(app('user'), 'creator_id');
+            $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
         });
     }

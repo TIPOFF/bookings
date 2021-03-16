@@ -13,6 +13,8 @@ class CreateBookingCategoriesTable extends Migration
         Schema::create('booking_categories', function (Blueprint $table) {
             $table->id();
             $table->string('label');
+            $table->foreignIdFor(app('user'), 'creator_id');
+            $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
         });
     }
