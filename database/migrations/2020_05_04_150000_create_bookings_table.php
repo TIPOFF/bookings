@@ -32,6 +32,8 @@ class CreateBookingsTable extends Migration
             $table->morphs('subject');
             $table->datetime('proccessed_at');
             $table->datetime('canceled_at');
+            $table->foreignIdFor(app('user'), 'creator_id');
+            $table->foreignIdFor(app('user'), 'updater_id');
             $table->timestamps();
         });
     }
