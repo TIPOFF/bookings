@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tipoff\Bookings\Models;
 
 use Carbon\Carbon;
+use Tipoff\Bookings\Enums\BookingStatus;
 use Tipoff\Statuses\Traits\HasStatuses;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
@@ -127,5 +128,19 @@ class Booking extends BaseModel
     public function subject()
     {
         return $this->morphTo();
+    }
+
+    public function setBookingStatus(BookingStatus $bookingStatus): self
+    {
+        $this->setStatus((string) $bookingStatus->getValue(), BookingStatus::statusType());
+
+        return $this;
+    }
+
+    public function getBookingStatus(): ?BookingStatus
+    {
+        $status = $this->getStatus(BookingStatus::statusType());
+
+        return $status ? BookingStatus::byValue((string) $status) : null;
     }
 }
