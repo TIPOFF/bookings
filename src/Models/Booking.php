@@ -39,7 +39,7 @@ class Booking extends BaseModel implements BookingInterface
 
     public function getTimezone(): string
     {
-        $this->getSlot()->getTimezone();
+        return $this->getSlot()->getTimezone();
     }
 
     public function getDescription(): string
@@ -111,7 +111,7 @@ class Booking extends BaseModel implements BookingInterface
     public function getAmount(): int
     {
         // @todo: implement amounts
-        return null;
+        return 0;
     }
 
     public function getTotalFees()
