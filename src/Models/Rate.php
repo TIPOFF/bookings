@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Tipoff\Bookings\Models;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Tipoff\Support\Contracts\Booking\BookingRateInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
-class Rate extends BaseModel
+class Rate extends BaseModel implements BookingRateInterface
 {
     use HasPackageFactory;
 
@@ -39,14 +41,34 @@ class Rate extends BaseModel
         });
     }
 
-    public function getSlug()
+    public function getSlug(): string
     {
         // @todo Slug Interface method
     }
 
-    public function getAmount()
+    public function getAmount(): int
     {
         // @todo Amount Interface method
+    }
+
+    public function getLabel(): string
+    {
+        return $this->name;
+    }
+
+    public function category(): Relation
+    {
+        return $this->rate_category;
+    }
+
+    /**
+     * Get number of participants for the rate.
+     *
+     * @return int|null
+     */
+    public function getParticipantsLimit(): ?int
+    {
+        return $this->participants_limit;
     }
 
     public function getRouteKeyName()

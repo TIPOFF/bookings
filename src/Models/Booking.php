@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace Tipoff\Bookings\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Tipoff\Bookings\Enums\BookingStatus;
 use Tipoff\Statuses\Traits\HasStatuses;
+use Tipoff\Support\Contracts\Booking\BookingInterface;
+use Tipoff\Support\Contracts\Booking\BookingSlotInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
 
 //Todo: Implement booking interfaces
-class Booking extends BaseModel
+class Booking extends BaseModel implements BookingInterface
 {
     use HasPackageFactory;
     use HasCreator;
@@ -28,6 +31,66 @@ class Booking extends BaseModel
         'user',
         'subject',
     ];
+
+    public function getLabel(): string
+    {
+        return $this->getSubject()->getLabel();
+    }
+
+    public function getTimezone(): string
+    {
+        $this->getSlot()->getTimezone();
+    }
+
+    public function getDescription(): string
+    {
+        $date = strtoupper(
+            $this
+                ->getSlot()
+                ->getStartAt()
+                ->setTimezone($this->getTimezone())
+                ->format('D\, M j')
+        );
+        $arrival = $this
+            ->getSlot()
+            ->getStartAt()
+            ->setTimezone($this->getTimezone())
+            ->subMinutes(15)
+            ->format('g:i A');
+
+        $start = $this
+            ->getSlot()
+            ->getStartAt()
+            ->setTimezone($this->getTimezone())
+            ->format('g:i A');
+
+        return $date.' ⬩ ARRIVE BY '.$arrival.' ⬩ STARTS AT '.$start;
+    }
+
+    public function getDate(): Carbon
+    {
+        return $this->getSlot()->getDate();
+    }
+
+    public function participants(): Relation
+    {
+        return $this->belongsToMany(app('participant'));
+    }
+
+    public function getSubject(): Relation
+    {
+        return $this->subject;
+    }
+
+    /**
+     * Get slot.
+     *
+     * @return BookingSlotInterface
+     */
+    public function getSlot(): BookingSlotInterface
+    {
+        return $this->slot;
+    }
 
     /**
      * Generate amount, total_taxes and total_fees.
@@ -45,7 +108,7 @@ class Booking extends BaseModel
         return null;
     }
 
-    public function getAmountTotal()
+    public function getAmount(): int
     {
         // @todo: implement amounts
         return null;
