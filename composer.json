@@ -19,7 +19,7 @@
         "dniccum/phone-number": "^1.1",
         "inspheric/nova-email-field": "^1.42",
         "tipoff/authorization": "^2.5.5",
-        "tipoff/checkout": "^2.4.2",
+        "tipoff/checkout": "^2.5.1",
         "tipoff/statuses": "^2.0.5",
         "tipoff/support": "^1.7.2"
     },
