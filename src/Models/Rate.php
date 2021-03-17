@@ -44,11 +44,13 @@ class Rate extends BaseModel implements BookingRateInterface
     public function getSlug(): string
     {
         // @todo Slug Interface method
+        return '';
     }
 
     public function getAmount(): int
     {
         // @todo Amount Interface method
+        return 0;
     }
 
     public function getLabel(): string
