@@ -3,10 +3,8 @@
 namespace Tipoff\Bookings\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
@@ -70,32 +68,10 @@ class Rate extends BaseResource
 
     protected function dataFields(): array
     {
-        return [
-            ID::make(),
-            BelongsTo::make('Created By', 'creator', app('user'))->exceptOnForms(),
-            DateTime::make('Created At')->exceptOnForms(),
-            BelongsTo::make('Updated By', 'updater', app('user'))->exceptOnForms(),
-            DateTime::make('Updated At')->exceptOnForms(),
-        ];
-    }
-
-    public function cards(Request $request)
-    {
-        return [];
-    }
-
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    public function actions(Request $request)
-    {
-        return [];
+        return array_merge(
+            parent::dataFields(),
+            $this->creatorDataFields(),
+            $this->updaterDataFields(),
+        );
     }
 }
