@@ -68,7 +68,6 @@ class Participant extends BaseModel implements BookingParticipantInterface
         return $this->user;
     }
 
-
     public function user()
     {
         return $this->morphTo(app('user'));

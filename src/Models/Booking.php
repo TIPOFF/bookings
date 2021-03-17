@@ -7,7 +7,6 @@ namespace Tipoff\Bookings\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Tipoff\Bookings\Enums\BookingStatus;
-use Tipoff\Bookings\Models\BookingCategory;
 use Tipoff\Statuses\Traits\HasStatuses;
 use Tipoff\Support\Contracts\Booking\BookingInterface;
 use Tipoff\Support\Contracts\Booking\BookingSlotInterface;
