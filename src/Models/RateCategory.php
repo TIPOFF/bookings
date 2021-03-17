@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Tipoff\Bookings\Models;
 
+use Tipoff\Support\Contracts\Booking\BookingRateCategoryInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
 
-class RateCategory extends BaseModel
+class RateCategory extends BaseModel implements BookingRateCategoryInterface
 {
     use HasPackageFactory;
     use HasCreator;
@@ -18,6 +19,16 @@ class RateCategory extends BaseModel
     protected static function boot()
     {
         parent::boot();
+    }
+
+    /**
+     * Get label used in lists.
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->name;
     }
 
     public function rates()
