@@ -25,3 +25,7 @@ All notable changes to `bookings` will be documented in this file.
 
 - updated models
 - first version of base booking service
+
+## 2.2.0 - 2021-03-17
+
+- implement booking interfaces
