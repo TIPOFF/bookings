@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tipoff\Bookings\Models;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Tipoff\Support\Contracts\Booking\BookingRateCategoryInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
@@ -31,7 +32,7 @@ class RateCategory extends BaseModel implements BookingRateCategoryInterface
         return $this->name;
     }
 
-    public function rates()
+    public function rates(): Relation
     {
         return $this->hasMany(Rate::class);
     }

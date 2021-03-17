@@ -78,6 +78,11 @@ class Booking extends BaseModel implements BookingInterface
         return $this->belongsToMany(app('participant'));
     }
 
+    public function getSubject(): Relation
+    {
+        return $this->subject;
+    }
+
     /**
      * Get slot.
      *

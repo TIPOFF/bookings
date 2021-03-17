@@ -26,7 +26,7 @@ class BookingCategory extends BaseModel implements BookingCategoryInterface
         return $this->hasMany(Booking::class);
     }
 
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
