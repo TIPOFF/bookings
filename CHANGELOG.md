@@ -29,3 +29,7 @@ All notable changes to `bookings` will be documented in this file.
 ## 2.2.0 - 2021-03-17
 
 - implement booking interfaces
+
+## 2.2.1 - 2021-03-18
+
+- improve booking interfaces
