@@ -8,8 +8,10 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Tipoff\Bookings\Enums\BookingStatus;
 use Tipoff\Statuses\Traits\HasStatuses;
+use Tipoff\Support\Contracts\Booking\BookingExperienceInterface;
 use Tipoff\Support\Contracts\Booking\BookingInterface;
 use Tipoff\Support\Contracts\Booking\BookingSlotInterface;
+use Tipoff\Support\Contracts\Booking\BookingSubjectInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -77,7 +79,7 @@ class Booking extends BaseModel implements BookingInterface
         return $this->belongsToMany(app('participant'));
     }
 
-    public function getSubject(): Relation
+    public function getSubject(): BookingSubjectInterface
     {
         return $this->subject;
     }
@@ -158,7 +160,7 @@ class Booking extends BaseModel implements BookingInterface
         return $this->morphToMany(app('variation'), 'variation');
     }
 
-    public function experience()
+    public function experience(): Relation
     {
         return $this->morphTo();
     }
@@ -188,9 +190,14 @@ class Booking extends BaseModel implements BookingInterface
         return $this->belongsTo(BookingCategory::class);
     }
 
-    public function subject()
+    public function subject(): Relation
     {
         return $this->morphTo();
+    }
+
+    public function getExperience(): BookingExperienceInterface
+    {
+        return $this->experience;
     }
 
     public function setBookingStatus(BookingStatus $bookingStatus): self
