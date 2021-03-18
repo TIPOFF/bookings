@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tipoff\Bookings\Models;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Tipoff\Support\Contracts\Booking\BookingRateCategoryInterface;
 use Tipoff\Support\Contracts\Booking\BookingRateInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -44,16 +45,23 @@ class Rate extends BaseModel implements BookingRateInterface
     public function getSlug(): string
     {
         // @todo Slug Interface method
+        return '';
     }
 
     public function getAmount(): int
     {
         // @todo Amount Interface method
+        return 0;
     }
 
     public function getLabel(): string
     {
         return $this->name;
+    }
+
+    public function getCategory(): BookingRateCategoryInterface
+    {
+        return $this->category;
     }
 
     public function category(): Relation
