@@ -187,7 +187,7 @@ class Booking extends BaseModel implements BookingInterface
 
     public function bookingCategory()
     {
-        return $this->belongsTo(BookingCategory::class);
+        return $this->belongsTo(app('booking_category'));
     }
 
     public function subject(): Relation

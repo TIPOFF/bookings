@@ -34,6 +34,6 @@ class RateCategory extends BaseModel implements BookingRateCategoryInterface
 
     public function rates(): Relation
     {
-        return $this->hasMany(Rate::class);
+        return $this->hasMany(app('rate'));
     }
 }
