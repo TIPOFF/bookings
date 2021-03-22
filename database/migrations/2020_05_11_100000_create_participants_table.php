@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Tipoff\Bookings\Models\Booking;
 
 class CreateParticipantsTable extends Migration
 {
@@ -19,7 +18,7 @@ class CreateParticipantsTable extends Migration
             $table->string('last_name')->nullable();
             $table->date('birth_date')->nullable();
             $table->boolean('is_verified')->default(false);
-            $table->foreignIdFor(Booking::class);
+            // $table->foreignIdFor(app('booking')); // Participants have a many-to-many relationship with bookings
             $table->softDeletes(); // Soft delete if the participant email address bounces
             $table->foreignIdFor(app('user'), 'creator_id');
             $table->foreignIdFor(app('user'), 'updater_id');
