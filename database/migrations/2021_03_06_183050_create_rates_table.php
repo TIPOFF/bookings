@@ -16,7 +16,6 @@ class CreateRatesTable extends Migration
             $table->string('name');
             $table->unsignedInteger('amount');
             $table->string('rate_type');
-            $table->foreignIdFor(app('booking'));
             $table->foreignIdFor(app('rate_category'));
             $table->unsignedInteger('participants_limit');
             $table->foreignIdFor(app('user'), 'creator_id');
