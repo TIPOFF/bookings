@@ -6,7 +6,6 @@ namespace Tipoff\Bookings\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tipoff\Bookings\Models\Rate;
-use Tipoff\Bookings\Models\RateCategory;
 
 class RateFactory extends Factory
 {
@@ -31,7 +30,7 @@ class RateFactory extends Factory
             'amount'                => $this->faker->numberBetween(0, 9999),
             'rate_type'             => $types[array_rand($types)],
             'participants_limit'    => $this->faker->numberBetween(0, 100),
-            'rate_category_id'      => RateCategory::factory()->create()->id,
+            'rate_category_id'      => randomOrCreate(app('rate_category')),
             'booking_id'            => randomOrCreate(app('booking')),
             'creator_id'            => randomOrCreate(app('user')),
             'updater_id'            => randomOrCreate(app('user')),
