@@ -5,9 +5,6 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Tipoff\Bookings\Models\BookingCategory;
-use Tipoff\Bookings\Models\BookingStatus;
-use Tipoff\Bookings\Models\Rate;
 
 class CreateBookingsTable extends Migration
 {
@@ -25,8 +22,8 @@ class CreateBookingsTable extends Migration
             $table->unsignedInteger('total_fees');
             $table->morphs('experience');
             $table->morphs('subject');
-            $table->foreignIdFor(Rate::class);
-            $table->foreignIdFor(BookingCategory::class);
+            $table->foreignIdFor(app('rate'));
+            $table->foreignIdFor(app('booking_category'));
             $table->morphs('agent');
             $table->datetime('proccessed_at');
             $table->datetime('canceled_at');
