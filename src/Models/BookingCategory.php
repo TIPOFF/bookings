@@ -23,7 +23,7 @@ class BookingCategory extends BaseModel implements BookingCategoryInterface
 
     public function bookings()
     {
-        return $this->hasMany(Booking::class);
+        return $this->hasMany(app('booking'));
     }
 
     public function getLabel(): string
