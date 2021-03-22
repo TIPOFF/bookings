@@ -14,7 +14,7 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('slot_number');
             $table->foreignIdFor(app('user'));
-            $table->morphs('order'); // Can this be $table->foreignIdFor(app('order'));
+            $table->foreignIdFor(app('order'));
             $table->integer('total_participants');
             $table->unsignedInteger('total_amount');
             $table->unsignedInteger('amount');
