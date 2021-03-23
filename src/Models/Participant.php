@@ -22,7 +22,7 @@ class Participant extends BaseModel implements BookingParticipantInterface
     protected $casts = [
         'dob' => 'date',
     ];
-  
+
     protected static function boot()
     {
         parent::boot();
@@ -66,6 +66,11 @@ class Participant extends BaseModel implements BookingParticipantInterface
     public function getUser(): UserInterface
     {
         return $this->user;
+    }
+
+    public function email()
+    {
+        return $this->hasOne(app('email_address'));
     }
 
     public function user()
