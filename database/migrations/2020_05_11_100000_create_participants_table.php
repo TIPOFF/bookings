@@ -18,7 +18,6 @@ class CreateParticipantsTable extends Migration
             $table->string('last_name')->nullable();
             $table->date('birth_date')->nullable();
             $table->boolean('is_verified')->default(false);
-            // $table->foreignIdFor(app('booking')); // Participants have a many-to-many relationship with bookings
             $table->softDeletes(); // Soft delete if the participant email address bounces
             $table->foreignIdFor(app('user'), 'creator_id');
             $table->foreignIdFor(app('user'), 'updater_id');
