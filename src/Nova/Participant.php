@@ -32,7 +32,7 @@ class Participant extends BaseResource
             Text::make('Name', function () {
                 return $this->name . ' ' . $this->name_last;
             }),
-            Text::make('Email'),
+            nova('email_address') ? BelongsTo::make('Email Address', 'email_address', nova('email_address'))->sortable() : null,
             DateTime::make('Created', 'created_at')->sortable(),
         ]);
     }
@@ -43,7 +43,7 @@ class Participant extends BaseResource
             nova('user') ? BelongsTo::make('User', 'user', nova('user'))->searchable()->withSubtitles()->withoutTrashed() : null,
             Text::make('First Name', 'name'),
             Text::make('Last Name', 'name_last'),
-            Text::make('Email'),
+            nova('email_address') ? BelongsTo::make('Email Address', 'email_address', nova('email_address'))->sortable() : null,
             Badge::make('Valid Email', function () {
                 if (isset($this->deleted_at)) {
                     return 'No';
