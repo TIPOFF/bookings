@@ -14,7 +14,7 @@ class CreateParticipantsTable extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->morphs('user');
-            $table->string('email')->unique();
+            $table->foreignIdFor(app('email_address'))->index();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->date('birth_date')->nullable();
