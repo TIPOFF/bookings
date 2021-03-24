@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Tipoff\Scheduler\Models;
 
-use Assert\Assert;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
 use Tipoff\Support\Contracts\Booking\BookingSlotInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -173,6 +169,4 @@ class BookingSlot extends BaseModel implements BookingSlotInterface
     {
         return $this->hasMany(app('booking'));
     }
-
-
 }
