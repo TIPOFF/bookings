@@ -31,7 +31,6 @@ class RateFactory extends Factory
             'rate_type'             => $types[array_rand($types)],
             'participants_limit'    => $this->faker->numberBetween(0, 100),
             'rate_category_id'      => randomOrCreate(app('rate_category')),
-            'booking_id'            => randomOrCreate(app('booking')),
             'creator_id'            => randomOrCreate(app('user')),
             'updater_id'            => randomOrCreate(app('user')),
         ];
