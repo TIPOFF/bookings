@@ -24,12 +24,13 @@ class RateFactory extends Factory
     public function definition()
     {
         $types = ['public', 'private'];
+
         return [
             'slug'                  => $this->faker->slug,
             'name'                  => $this->faker->name,
-            'amount'                => $this->faker->numberBetween(0, 9999),
+            'amount'                => $this->faker->numberBetween(1, 9999),
             'rate_type'             => $types[array_rand($types)],
-            'participants_limit'    => $this->faker->numberBetween(0, 100),
+            'participants_limit'    => $this->faker->numberBetween(1, 100),
             'rate_category_id'      => randomOrCreate(app('rate_category')),
             'creator_id'            => randomOrCreate(app('user')),
             'updater_id'            => randomOrCreate(app('user')),
