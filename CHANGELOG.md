@@ -33,3 +33,8 @@ All notable changes to `bookings` will be documented in this file.
 ## 2.2.1 - 2021-03-18
 
 - improve booking interfaces
+
+## 2.3.0 - 2021-03-26
+
+- update migrations
+- update models
