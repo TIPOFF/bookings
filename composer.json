@@ -20,7 +20,7 @@
         "inspheric/nova-email-field": "^1.42",
         "tipoff/authorization": "^2.7.1",
         "tipoff/statuses": "^2.1.0",
-        "tipoff/support": "^1.8.8"
+        "tipoff/support": "^1.8.9"
     },
     "require-dev": {
         "tipoff/test-support": "^1.4.2"
