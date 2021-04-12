@@ -38,3 +38,7 @@ All notable changes to `bookings` will be documented in this file.
 
 - update migrations
 - update models
+
+## 2.4.0 - 2021-04-11
+
+- bump package dependencies
