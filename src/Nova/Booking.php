@@ -102,8 +102,6 @@ class Booking extends BaseResource
     {
         return [
             Text::make('Name', 'order.customer.user.full_name')->exceptOnForms(),
-            PhoneNumber::make('Phone', 'order.customer.phone_number')->format('###-###-####')->disableValidation()->useMaskPlaceholder()->linkOnDetail()->exceptOnForms(),
-            Email::make('Email', 'order.customer.user.email')->clickable()->exceptOnForms(),
             Text::make('Address', 'order.customer.address')->exceptOnForms(),
             Text::make('City', 'order.customer.city')->exceptOnForms(),
             Text::make('State', 'order.customer.state')->exceptOnForms(),
