@@ -16,14 +16,13 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "dniccum/phone-number": "^1.1",
-        "inspheric/nova-email-field": "^1.42",
-        "tipoff/authorization": "^2.7.1",
-        "tipoff/statuses": "^2.1.0",
-        "tipoff/support": "^1.8.9"
+        "tipoff/authorization": "^2.8.0",
+        "tipoff/locations": "^2.9.7",
+        "tipoff/statuses": "^2.2.0",
+        "tipoff/support": "^2.0.1"
     },
     "require-dev": {
-        "tipoff/test-support": "^1.4.2"
+        "tipoff/test-support": "^2.0.0"
     },
     "repositories": [
         {
