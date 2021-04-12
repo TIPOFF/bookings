@@ -2,9 +2,7 @@
 
 namespace Tipoff\Bookings\Nova;
 
-use Dniccum\PhoneNumber\PhoneNumber;
 use Illuminate\Http\Request;
-use Inspheric\Fields\Email;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Currency;
