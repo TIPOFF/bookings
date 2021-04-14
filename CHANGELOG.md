@@ -42,3 +42,7 @@ All notable changes to `bookings` will be documented in this file.
 ## 2.4.0 - 2021-04-11
 
 - bump package dependencies
+
+## 2.5.0 - 2021-04-11
+
+- bookings location-based routing
