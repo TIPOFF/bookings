@@ -6,7 +6,6 @@ namespace Tipoff\Bookings\Tests\Unit\Http\Controllers;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tipoff\Authorization\Models\User;
-use Tipoff\Bookings\Models\BookingCategory;
 use Tipoff\Bookings\Tests\TestCase;
 use Tipoff\Locations\Models\Location;
 use Tipoff\Locations\Models\Market;
@@ -84,5 +83,4 @@ class BookingsControllerTest extends TestCase
             ->assertOk()
             ->assertSee("-- M:{$market->id} L:{$location->id} --");
     }
-
 }
