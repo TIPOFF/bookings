@@ -16,8 +16,9 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
+        "drewroberts/blog": "dev-pdbreen/feature/79 as 4.4.5",
         "tipoff/authorization": "^2.8.0",
-        "tipoff/locations": "^2.9.9",
+        "tipoff/locations": "dev-pdbreen/feature/blog-79 as 2.9.10",
         "tipoff/statuses": "^2.2.0",
         "tipoff/support": "^2.0.2"
     },
