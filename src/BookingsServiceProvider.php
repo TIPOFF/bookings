@@ -34,7 +34,9 @@ class BookingsServiceProvider extends TipoffServiceProvider
                 \Tipoff\Bookings\Nova\Participant::class,
                 \Tipoff\Bookings\Nova\Rate::class,
             ])
+            ->hasWebRoute('web')
             ->name('bookings')
+            ->hasViews()
             ->hasConfigFile();
     }
 }
