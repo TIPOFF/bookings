@@ -46,3 +46,7 @@ All notable changes to `bookings` will be documented in this file.
 ## 2.5.0 - 2021-04-11
 
 - bookings location-based routing
+
+## 2.5.1 - 2021-04-15
+
+- update view
