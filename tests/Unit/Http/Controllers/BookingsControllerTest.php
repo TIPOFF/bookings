@@ -48,7 +48,7 @@ class BookingsControllerTest extends TestCase
 
         $this->get($this->webUrl("company/bookings"))
             ->assertOk()
-            ->assertSee("Select Location");
+            ->assertSee("-- SELECT:0 --");
 
         $this->get($this->webUrl("{$market->slug}/bookings"))
             ->assertOk()
@@ -73,11 +73,11 @@ class BookingsControllerTest extends TestCase
 
         $this->get($this->webUrl("company/bookings"))
             ->assertOk()
-            ->assertSee("Select Location");
+            ->assertSee("-- SELECT:0 --");
 
         $this->get($this->webUrl("{$market->slug}/bookings"))
             ->assertOk()
-            ->assertSee("Select Location for {$market->name}");
+            ->assertSee("-- SELECT:{$market->id} --");
 
         $this->get($this->webUrl("{$market->slug}/{$location->slug}/bookings"))
             ->assertOk()
