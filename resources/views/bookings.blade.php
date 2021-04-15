@@ -1,8 +1,7 @@
 @extends('support::base')
 
 @section('content')
-    {{-- DO NOT REMOVE - identity tag --}}
-    <!-- M:{{ $market->id }} L:{{ $location->id }} -->
+    @include('bookings::partials._identity_tag')
 
     {{-- Place holder content - safe to replace --}}
     <ul>
