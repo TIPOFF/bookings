@@ -70,6 +70,7 @@ class Participant extends BaseModel implements BookingParticipantInterface
 
     public function email()
     {
+        //Todo: Determine relationship
         return $this->hasOne(app('email_address'));
     }
 
