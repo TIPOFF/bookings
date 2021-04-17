@@ -50,3 +50,7 @@ All notable changes to `bookings` will be documented in this file.
 ## 2.5.1 - 2021-04-15
 
 - update view
+
+## 2.5.2 - 2021-04-16
+
+- update model relationships
