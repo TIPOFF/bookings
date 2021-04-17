@@ -70,7 +70,7 @@ class Participant extends BaseModel implements BookingParticipantInterface
 
     public function email()
     {
-        return $this->hasOne(app('email_address'));
+        return $this->belongsTo(app('email_address'), 'email_address_id');
     }
 
     public function user()

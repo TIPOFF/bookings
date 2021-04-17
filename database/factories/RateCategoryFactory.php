@@ -26,7 +26,9 @@ class RateCategoryFactory extends Factory
     {
         return [
             'slug' => $this->faker->url,
-            'name' => $this->faker->name
+            'name' => $this->faker->name,
+            'creator_id' => randomOrCreate(app('user')),
+            'updater_id' => randomOrCreate(app('user')),
         ];
     }
 }

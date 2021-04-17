@@ -31,6 +31,8 @@ class ParticipantFactory extends Factory
             'birth_date'            => $this->faker->date('Y-m-d'),
             'is_verified'           => false,
             'user_id'               => randomOrCreate(app('user')),
+            'creator_id'            => randomOrCreate(app('user')),
+            'updater_id'            => randomOrCreate(app('user')),
         ];
     }
 }

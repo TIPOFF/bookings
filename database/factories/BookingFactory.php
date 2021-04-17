@@ -33,8 +33,10 @@ class BookingFactory extends Factory
             'subject_id'            => 1,
             'experience_type'       => 'experience',
             'experience_id'         => 1,
-            'proccessed_at'         => $this->faker->dateTimeBetween('+0 days', '+2 years'),        
-            'canceled_at'           => $this->faker->dateTimeBetween('+0 days', '+2 years'),        
+            'proccessed_at'         => $this->faker->dateTimeBetween('+0 days', '+2 years'),
+            'canceled_at'           => $this->faker->dateTimeBetween('+0 days', '+2 years'),
+            'creator_id'            => randomOrCreate(app('user')),
+            'updater_id'            => randomOrCreate(app('user')),
         ];
     }
 
