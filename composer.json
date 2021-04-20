@@ -17,7 +17,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "tipoff/authorization": "^2.8.6",
-        "tipoff/locations": "^2.10.1",
+        "tipoff/locations": "^2.11.0",
         "tipoff/statuses": "^2.2.0",
         "tipoff/support": "^2.1.4"
     },
