@@ -11,6 +11,7 @@ use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
+use Tipoff\Support\Contracts\Waivers\SignatureInterface;
 
 class Participant extends BaseModel implements BookingParticipantInterface
 {
@@ -66,6 +67,16 @@ class Participant extends BaseModel implements BookingParticipantInterface
     public function getUser(): UserInterface
     {
         return $this->user;
+    }
+    
+    /**
+     * Returns the user that owns the container
+     *
+     * @return UserInterface
+     */
+    public static function findOrCreateFromSignature(SignatureInterface $signature): self
+    {
+
     }
 
     public function email()
