@@ -7,11 +7,11 @@ namespace Tipoff\Bookings\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Tipoff\Support\Contracts\Booking\BookingParticipantInterface;
 use Tipoff\Support\Contracts\Models\UserInterface;
+use Tipoff\Support\Contracts\Waivers\SignatureInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
-use Tipoff\Support\Contracts\Waivers\SignatureInterface;
 
 class Participant extends BaseModel implements BookingParticipantInterface
 {
@@ -76,7 +76,6 @@ class Participant extends BaseModel implements BookingParticipantInterface
      */
     public static function findOrCreateFromSignature(SignatureInterface $signature): self
     {
-
     }
 
     public function email()
