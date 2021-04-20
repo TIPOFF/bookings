@@ -16,10 +16,10 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "tipoff/authorization": "^2.8.1",
+        "tipoff/authorization": "dev-pdbreen/feature/waiver-57 as 2.8.5",
         "tipoff/locations": "^2.10.1",
         "tipoff/statuses": "^2.2.0",
-        "tipoff/support": "^2.0.2"
+        "tipoff/support": "^2.1.4"
     },
     "require-dev": {
         "tipoff/test-support": "^2.0.0"
