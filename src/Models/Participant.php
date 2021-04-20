@@ -7,6 +7,7 @@ namespace Tipoff\Bookings\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Tipoff\Support\Contracts\Booking\BookingParticipantInterface;
 use Tipoff\Support\Contracts\Models\UserInterface;
+use Tipoff\Support\Contracts\Waivers\SignatureInterface;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -100,5 +101,18 @@ class Participant extends BaseModel implements BookingParticipantInterface
     public function bookings()
     {
         return $this->belongsToMany(app('booking'));
+    }
+
+    public static function findOrCreateFromSignature(SignatureInterface $signature): BookingParticipantInterface
+    {
+        /** @var Participant $participant */
+        $participant = static::query()->withTrashed()->firstOrNew(['email_address_id' => $signature->getEmailAddress()->getId()]);
+
+        $participant->first_name = $signature->getFirstName();
+        $participant->last_name = $signature->getLastName();
+        $participant->birth_date = $signature->getDob();
+        $participant->save();
+
+        return $participant;
     }
 }
