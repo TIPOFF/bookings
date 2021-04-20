@@ -70,9 +70,10 @@ class Participant extends BaseModel implements BookingParticipantInterface
     }
     
     /**
-     * Returns the user that owns the container
+     * Find existing or create new participant from signature
      *
-     * @return UserInterface
+     * @param SignatureInterface $signature
+     * @return static
      */
     public static function findOrCreateFromSignature(SignatureInterface $signature): self
     {
