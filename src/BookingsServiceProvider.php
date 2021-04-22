@@ -33,6 +33,7 @@ class BookingsServiceProvider extends TipoffServiceProvider
                 \Tipoff\Bookings\Nova\Booking::class,
                 \Tipoff\Bookings\Nova\Participant::class,
                 \Tipoff\Bookings\Nova\Rate::class,
+                \Tipoff\Bookings\Nova\RateCategory::class,
             ])
             ->hasWebRoute('web')
             ->name('bookings')
