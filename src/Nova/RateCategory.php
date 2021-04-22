@@ -3,9 +3,7 @@
 namespace Tipoff\Bookings\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
@@ -43,7 +41,6 @@ class RateCategory extends BaseResource
             new Panel('Data Fields', $this->dataFields()),
         ];
     }
-
 
     protected function dataFields(): array
     {
