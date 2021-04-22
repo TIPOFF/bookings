@@ -3,10 +3,12 @@
 namespace Tipoff\Bookings\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -40,14 +42,19 @@ class Rate extends BaseResource
         return [
             Text::make('Name')->required(),
             Slug::make('Slug')->from('Name'),
+            Text::make('Rate Type'),
+            Number::make('Participants Limit'),
+            nova('rate_category') ? BelongsTo::make('Rate Category', 'rate_category', nova('rate_category')) : null,
 
             new Panel('Money Fields', $this->moneyFields()),
 
-            HasMany::make('Rooms', 'rooms', nova('room')),
-            
+            #nova('room') ? HasMany::make('Rooms', 'rooms', nova('room')) : null,
+
             new Panel('Data Fields', $this->dataFields()),
 
-            HasMany::make('Bookings'),
+            #nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null,
+
+            nova('rate_category') ? BelongsTo::make('Rate Category', 'rate_category', nova('rate_category')) : null,
 
         ];
     }
