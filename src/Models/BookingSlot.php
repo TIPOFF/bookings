@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tipoff\Scheduler\Models;
+namespace Tipoff\Bookings\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
