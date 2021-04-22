@@ -43,8 +43,8 @@ class Rate extends BaseResource
 
             new Panel('Money Fields', $this->moneyFields()),
 
-            HasMany::make('Rooms'),
-
+            HasMany::make('Rooms', 'rooms', nova('room')),
+            
             new Panel('Data Fields', $this->dataFields()),
 
             HasMany::make('Bookings'),
