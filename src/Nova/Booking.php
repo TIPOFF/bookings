@@ -47,7 +47,7 @@ class Booking extends BaseResource
         ])) {
             return $query
                 ->select('bookings.*');
-                //neither Slot nor rooms exist in the database
+            //neither Slot nor rooms exist in the database
                 //->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
                 //->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
         }
@@ -56,7 +56,7 @@ class Booking extends BaseResource
             return $orderlocation
                 ->whereIn('order.location_id', $request->user()->locations->pluck('id'));
         })->select('bookings.*');
-            //neither Slot nor rooms exist in the database
+        //neither Slot nor rooms exist in the database
             #->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
             #->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id')
             #->leftJoin('orders as order', 'order.id', '=', 'bookings.order_id');
