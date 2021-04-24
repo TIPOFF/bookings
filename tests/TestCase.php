@@ -12,6 +12,7 @@ use Spatie\Permission\PermissionServiceProvider;
 use Tipoff\Addresses\AddressesServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Bookings\BookingsServiceProvider;
+use Tipoff\Checkout\CheckoutServiceProvider;
 use Tipoff\Locations\LocationsServiceProvider;
 use Tipoff\Seo\SeoServiceProvider;
 use Tipoff\Statuses\StatusesServiceProvider;
@@ -36,6 +37,7 @@ class TestCase extends BaseTestCase
             BlogServiceProvider::class,
             LocationsServiceProvider::class,
             StatusesServiceProvider::class,
+            CheckoutServiceProvider::class,
             BookingsServiceProvider::class,
         ];
     }
