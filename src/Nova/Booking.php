@@ -39,18 +39,20 @@ class Booking extends BaseResource
     {
         if ($request->user()->hasPermissionTo('all locations')) {
             return $query
-                ->select('bookings.*')
-                ->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
-                ->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
+                ->select('bookings.*');
+            //neither Slot nor rooms exist in the database
+                //->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
+                //->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
         }
 
         return $query->whereHas('order', function ($orderlocation) use ($request) {
             return $orderlocation
                 ->whereIn('order.location_id', $request->user()->locations->pluck('id'));
-        })->select('bookings.*')
-            ->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
-            ->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id')
-            ->leftJoin('orders as order', 'order.id', '=', 'bookings.order_id');
+        })->select('bookings.*');
+        //neither Slot nor rooms exist in the database
+            #->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
+            #->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id')
+            #->leftJoin('orders as order', 'order.id', '=', 'bookings.order_id');
     }
 
     public static $group = 'Operations';

@@ -113,4 +113,9 @@ class Rate extends BaseModel implements BookingRateInterface
     {
         return $this->hasMany(app('schedule'));
     }
+
+    public function rate_category()
+    {
+        return $this->belongsTo(app('rate_category'));
+    }
 }
