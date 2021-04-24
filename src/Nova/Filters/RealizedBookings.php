@@ -25,15 +25,17 @@ class RealizedBookings extends BooleanFilter
         }
 
         if ($value['unrealized'] == true) {
-            return $query->whereHas('slot', function ($query) {
+            //TODO this field does not exists in the database
+            /*return $query->whereHas('slot', function ($query) {
                 $query->where('slots.start_at', '>', Carbon::now());
-            });
+            });*/
         }
 
         if ($value['realized'] == true) {
-            return $query->whereHas('slot', function ($query) {
+            //TODO this field does not exists in the database
+            /*return $query->whereHas('slot', function ($query) {
                 $query->where('slots.start_at', '<', Carbon::now());
-            });
+            });*/
         }
 
         return $query;

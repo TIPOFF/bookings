@@ -19,11 +19,12 @@
         "tipoff/authorization": "^2.8.6",
         "tipoff/checkout": "^2.7.2",
         "tipoff/locations": "^2.11.0",
+        "tipoff/locations": "^2.12.0",
         "tipoff/statuses": "^2.2.0",
-        "tipoff/support": "^2.1.4"
+        "tipoff/support": "^2.1.5"
     },
     "require-dev": {
-        "tipoff/test-support": "^2.0.0"
+        "tipoff/test-support": "^2.0.1"
     },
     "repositories": [
         {
