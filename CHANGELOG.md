@@ -58,3 +58,7 @@ All notable changes to `bookings` will be documented in this file.
 ## 2.5.3 - 2021-04-20
 
 - model interfaces
+
+## 2.5.4 - 2021-04-24
+
+- update nova resources
