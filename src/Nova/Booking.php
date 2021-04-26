@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\MorphOne;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -32,27 +33,21 @@ class Booking extends BaseResource
         \Tipoff\Bookings\Nova\Filters\RealizedBookings::class,
         \Tipoff\Scheduler\Nova\Filters\SlotRoom::class,
         \Tipoff\Scheduler\Nova\Filters\SlotDayFilter::class,
-        \Tipoff\Locations\Nova\Filters\OrderLocation::class,
     ];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
         if ($request->user()->hasPermissionTo('all locations')) {
-            return $query
-                ->select('bookings.*');
+            return $query;
             //neither Slot nor rooms exist in the database
                 //->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
                 //->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
         }
 
-        return $query->whereHas('order', function ($orderlocation) use ($request) {
-            return $orderlocation
-                ->whereIn('order.location_id', $request->user()->locations->pluck('id'));
-        })->select('bookings.*');
+        return $query->whereIn('location_id', $request->user()->locations->pluck('id'));
         //neither Slot nor rooms exist in the database
             #->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
-            #->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id')
-            #->leftJoin('orders as order', 'order.id', '=', 'bookings.order_id');
+            #->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
     }
 
     public static $group = 'Operations';
@@ -96,18 +91,22 @@ class Booking extends BaseResource
     protected function customerFields()
     {
         return [
-            Text::make('Name', 'order.customer.user.full_name')->exceptOnForms(),
-            Text::make('Address', 'order.customer.address')->exceptOnForms(),
-            Text::make('City', 'order.customer.city')->exceptOnForms(),
-            Text::make('State', 'order.customer.state')->exceptOnForms(),
-            Number::make('Zip', 'order.customer.zip')->exceptOnForms(),
+            Text::make('Name', 'user.full_name')->exceptOnForms(),
+            /**
+             * TODO - if address fields are important for bookings, then booking should be Addressable itself.
+             * It should not rely on an order item/order existing since those packages may not be installed!!
+            Text::make('Address', '...')->exceptOnForms(),
+            Text::make('City', '...')->exceptOnForms(),
+            Text::make('State', '...')->exceptOnForms(),
+            Number::make('Zip', '...')->exceptOnForms(),
+            */
         ];
     }
 
     protected function costFields()
     {
         return array_filter([
-            nova('order') ? BelongsTo::make('Order', 'order', nova('order'))->hideWhenUpdating()->exceptOnForms() : null,
+            nova('order_item') ? MorphOne::make('Order Item', 'sellable', nova('order_item'))->hideWhenUpdating()->exceptOnForms() : null,
             nova('rate') ? BelongsTo::make('Rate', 'rate', nova('rate'))->nullable()->exceptOnForms() : null,
             nova('tax') ? BelongsTo::make('Tax', 'tax', nova('tax'))->nullable()->exceptOnForms() : null,
             nova('fee') ? BelongsTo::make('Fee', 'fee', nova('fee'))->nullable()->exceptOnForms() : null,
