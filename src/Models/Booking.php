@@ -165,11 +165,6 @@ class Booking extends BaseModel implements BookingInterface
         return $this->morphTo();
     }
 
-    public function order()
-    {
-        return $this->morphToMany(app('order'), 'order');
-    }
-
     public function agent()
     {
         return $this->morphToMany(app('agent'), 'agent');
