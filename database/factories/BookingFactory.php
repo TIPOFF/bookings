@@ -19,7 +19,6 @@ class BookingFactory extends Factory
         return [
             'slot_number'           => $this->faker->numberBetween(0, 10),
             'user_id'               => randomOrCreate(app('user')),
-            'order_id'              => randomOrCreate(app('order')),
             'total_participants'    => $this->faker->numberBetween(0, 10),
             'total_amount'          => $this->faker->numberBetween(0, 10),
             'amount'                => $this->faker->numberBetween(0, 10),
