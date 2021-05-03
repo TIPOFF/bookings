@@ -14,7 +14,7 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('slot_number');
             $table->foreignIdFor(app('user'));
-            $table->foreignIdFor(app('order'));
+            $table->foreignIdFor(app('location'));
             $table->integer('total_participants');
             $table->unsignedInteger('total_amount');
             $table->unsignedInteger('amount');
@@ -25,7 +25,7 @@ class CreateBookingsTable extends Migration
             $table->foreignIdFor(app('rate'));
             $table->foreignIdFor(app('booking_category'));
             $table->morphs('agent');
-            $table->datetime('proccessed_at');
+            $table->datetime('processed_at');
             $table->datetime('canceled_at');
 
             $table->foreignIdFor(app('user'), 'creator_id');

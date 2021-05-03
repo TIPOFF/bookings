@@ -19,7 +19,7 @@ class BookingFactory extends Factory
         return [
             'slot_number'           => $this->faker->numberBetween(0, 10),
             'user_id'               => randomOrCreate(app('user')),
-            'order_id'              => randomOrCreate(app('order')),
+            'location_id'           => randomOrCreate(app('location')),
             'total_participants'    => $this->faker->numberBetween(0, 10),
             'total_amount'          => $this->faker->numberBetween(0, 10),
             'amount'                => $this->faker->numberBetween(0, 10),
@@ -33,7 +33,7 @@ class BookingFactory extends Factory
             'subject_id'            => 1,
             'experience_type'       => 'experience',
             'experience_id'         => 1,
-            'proccessed_at'         => $this->faker->dateTimeBetween('+0 days', '+2 years'),
+            'processed_at'         => $this->faker->dateTimeBetween('+0 days', '+2 years'),
             'canceled_at'           => $this->faker->dateTimeBetween('+0 days', '+2 years'),
             'creator_id'            => randomOrCreate(app('user')),
             'updater_id'            => randomOrCreate(app('user')),
