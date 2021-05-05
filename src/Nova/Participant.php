@@ -17,7 +17,7 @@ class Participant extends BaseResource
 {
     public static $model = \Tipoff\Bookings\Models\Participant::class;
 
-    public static $title = 'email';
+    public static $title = 'email.email';
 
     public static $search = [
         'id',
@@ -32,7 +32,7 @@ class Participant extends BaseResource
             Text::make('Name', function () {
                 return $this->name . ' ' . $this->name_last;
             }),
-            nova('email_address') ? BelongsTo::make('Email Address', 'email_address', nova('email_address'))->sortable() : null,
+            nova('email_address') ? BelongsTo::make('Email Address', 'email', nova('email_address'))->sortable() : null,
             DateTime::make('Created', 'created_at')->sortable(),
         ]);
     }
