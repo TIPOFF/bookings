@@ -35,7 +35,7 @@ class BookingCategory extends BaseResource
     public function fields(Request $request)
     {
         return [
-            Text::make('Label')->rules('required', 'max:254'),
+            Text::make('Label')->rules(['required', 'max:254']),
             new Panel('Data Fields', $this->dataFields()),
         ];
     }

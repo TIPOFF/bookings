@@ -103,9 +103,9 @@ class BookingSlot extends BaseResource
     protected function participantFields()
     {
         return array_filter([
-            Number::make('Participants')->rules('required', 'numeric', 'digits_between:1,3'),
-            Number::make('Participants Blocked')->rules('required', 'numeric', 'digits_between:1,3'),
-            Number::make('Participants Available')->rules('required', 'numeric', 'digits_between:1,3'),
+            Number::make('Participants')->rules(['required', 'numeric', 'digits_between:1,3']),
+            Number::make('Participants Blocked')->rules(['required', 'numeric', 'digits_between:1,3']),
+            Number::make('Participants Available')->rules(['required', 'numeric', 'digits_between:1,3']),
             Date::make('Date')->required(),
             DateTime::make('End At')->required(),
             DateTime::make('Room Available At')->required(),

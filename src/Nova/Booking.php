@@ -84,7 +84,7 @@ class Booking extends BaseResource
 
             nova('location') ? BelongsTo::make('Location', 'location', nova('location'))->sortable() : null,
 
-            Number::make('Total Participants')->rules('required', 'integer', 'min:1'),
+            Number::make('Total Participants')->rules(['required', 'integer', 'min:1']),
 
             new Panel('Cost', $this->costFields()),
 
@@ -101,8 +101,6 @@ class Booking extends BaseResource
             ]),
 
             nova('rate') ? BelongsTo::make('Rate', 'rate', nova('rate')) : null,
-
-            nova('escaperoom_rate') ? BelongsTo::make('Escaperoom Rate', 'escaperoomRate', nova('escaperoom_rate')) : null,
 
             nova('booking_category') ? BelongsTo::make('Booking Category', 'bookingCategory', nova('booking_category')) : null,
 

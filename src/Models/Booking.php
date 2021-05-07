@@ -214,11 +214,6 @@ class Booking extends BaseModel implements BookingInterface
         return $this->belongsTo(app('rate'));
     }
 
-    public function escaperoomRate()
-    {
-        return $this->belongsTo(app('escaperoom_rate'));
-    }
-
     public function getExperience(): BookingExperienceInterface
     {
         return $this->experience;
