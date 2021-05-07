@@ -96,7 +96,7 @@ class Rate extends BaseModel implements BookingRateInterface
 
     public function rooms()
     {
-        return $this->hasMany(app('room'));
+        return $this->hasMany(app('room'), 'escaperoom_rate_id');
     }
 
     public function slots()

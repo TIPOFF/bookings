@@ -23,7 +23,10 @@ class CreateBookingsTable extends Migration
             $table->morphs('experience');
             $table->morphs('subject');
             $table->foreignIdFor(app('rate'));
+            // The Escape Room Rate has a relationship with Booking, but there is no escaperoom_rate_id. I added this per https://tgerdev.slack.com/archives/C01LEEBRH33/p1620181624188200
+            $table->foreignIdFor(app('escaperoom_rate'));
             $table->foreignIdFor(app('booking_category'));
+            $table->foreignIdFor(app('booking_slot'));
             $table->morphs('agent');
             $table->datetime('processed_at');
             $table->datetime('canceled_at');

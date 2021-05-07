@@ -28,10 +28,14 @@ class Booking extends BaseModel implements BookingInterface
     protected $with = [
         'rate',
         'experience',
-        'order',
         'agent',
         'user',
         'subject',
+    ];
+
+    protected $casts = [
+        'processed_at' => 'datetime',
+        'canceled_at' => 'datetime'
     ];
 
     public function getLabel(): string
@@ -66,7 +70,7 @@ class Booking extends BaseModel implements BookingInterface
             ->setTimezone($this->getTimezone())
             ->format('g:i A');
 
-        return $date.' ⬩ ARRIVE BY '.$arrival.' ⬩ STARTS AT '.$start;
+        return $date . ' ⬩ ARRIVE BY ' . $arrival . ' ⬩ STARTS AT ' . $start;
     }
 
     public function getDate(): Carbon
@@ -190,9 +194,29 @@ class Booking extends BaseModel implements BookingInterface
         return $this->belongsTo(app('booking_category'));
     }
 
+    public function bookingSlot()
+    {
+        return $this->belongsTo(app('booking_slot'));
+    }
+
     public function subject(): Relation
     {
         return $this->morphTo();
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(app('location'));
+    }
+
+    public function rate()
+    {
+        return $this->belongsTo(app('rate'));
+    }
+
+    public function escaperoomRate()
+    {
+        return $this->belongsTo(app('escaperoom_rate'));
     }
 
     public function getExperience(): BookingExperienceInterface
@@ -202,7 +226,7 @@ class Booking extends BaseModel implements BookingInterface
 
     public function setBookingStatus(BookingStatus $bookingStatus): self
     {
-        $this->setStatus((string) $bookingStatus->getValue(), BookingStatus::statusType());
+        $this->setStatus((string)$bookingStatus->getValue(), BookingStatus::statusType());
 
         return $this;
     }
@@ -211,6 +235,6 @@ class Booking extends BaseModel implements BookingInterface
     {
         $status = $this->getStatus(BookingStatus::statusType());
 
-        return $status ? BookingStatus::byValue((string) $status) : null;
+        return $status ? BookingStatus::byValue((string)$status) : null;
     }
 }

@@ -38,6 +38,8 @@ class BookingsServiceProvider extends TipoffServiceProvider
             ])
             ->hasNovaResources([
                 \Tipoff\Bookings\Nova\Booking::class,
+                \Tipoff\Bookings\Nova\BookingCategory::class,
+                \Tipoff\Bookings\Nova\BookingSlot::class,
                 \Tipoff\Bookings\Nova\Participant::class,
                 \Tipoff\Bookings\Nova\Rate::class,
                 \Tipoff\Bookings\Nova\RateCategory::class,
