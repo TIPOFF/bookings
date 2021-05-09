@@ -21,9 +21,9 @@ class BookingSlotFactory extends Factory
             'start_at'               => $this->faker->dateTimeBetween('+0 days', '+2 years'),
             'end_at'                 => $this->faker->dateTimeBetween('+0 days', '+2 years'),
             'room_available_at'      => $this->faker->dateTimeBetween('+0 days', '+2 years'),
-            'participants'           => $this->faker->numberBetween(1, 999),
-            'participants_blocked'   => $this->faker->numberBetween(1, 999),
-            'participants_available' => $this->faker->numberBetween(1, 999),
+            'participants'           => $this->faker->numberBetween(1, 255),
+            'participants_blocked'   => $this->faker->numberBetween(1, 255),
+            'participants_available' => $this->faker->numberBetween(1, 255),
             'supervision_id'         => randomOrCreate(app('supervision')),
             'updater_id'             => randomOrCreate(app('user')),
         ];
