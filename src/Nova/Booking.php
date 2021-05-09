@@ -106,7 +106,7 @@ class Booking extends BaseResource
 
             Date::make('Processed At')->rules('required'),
 
-            Date::make('Canceled At')->rules('required'),
+            Date::make('Canceled At'),
 
             new Panel('Data Fields', $this->dataFields()),
         ]);
