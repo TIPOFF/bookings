@@ -4,14 +4,10 @@ namespace Tipoff\Bookings\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphMany;
-use Laravel\Nova\Fields\MorphOne;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -40,14 +36,14 @@ class Booking extends BaseResource
         if ($request->user()->hasPermissionTo('all locations')) {
             return $query;
             //neither Slot nor rooms exist in the database
-                //->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
-                //->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
+            //->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
+            //->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
         }
 
         return $query->whereIn('location_id', $request->user()->locations->pluck('id'));
         //neither Slot nor rooms exist in the database
-            #->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
-            #->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
+        #->leftJoin('slots as slot', 'slot.id', '=', 'bookings.slot_id')
+        #->leftJoin('rooms as room', 'room.id', '=', 'slot.room_id');
     }
 
     public static $group = 'Operations';
@@ -56,63 +52,73 @@ class Booking extends BaseResource
     {
         return array_filter([
             ID::make()->sortable(),
-            Text::make('Room', 'room.id', function () {
-                return $this->room->name;
-            })->sortable(),
-            Text::make('Game Start', 'slot.start_at', function () {
-                return $this->slot->formatted_start;
-            })->sortable(),
-            Date::make('Game Date', 'slot.date')->sortable(),
-            Number::make('Participants'),
-            DateTime::make('Purchased', 'created_at')->sortable(),
+
+            Text::make('Slot Number')->sortable(),
+
+            Number::make('Total Participants')->sortable(),
+
+            MorphTo::make('Experience')->types([
+                nova('escaperoom_game')
+            ]),
+
+            MorphTo::make('Subject')->types([
+                nova('room')
+            ]),
+
+            MorphTo::make('Agent')->types([
+                nova('user')
+            ]),
         ]);
     }
 
     public function fields(Request $request)
     {
         return array_filter([
-            nova('slot') ? BelongsTo::make('Slot', 'slot', nova('slot')) : null,
-            Text::make('Game Start', 'slot.start_at', function () {
-                return $this->slot->formatted_start;
-            })->exceptOnForms(),
-            Number::make('Participants')->exceptOnForms(),
-            Boolean::make('Private Game?', 'is_private')->exceptOnForms(),
+            nova('booking_slot') ? BelongsTo::make('Booking Slot', 'bookingSlot', nova('booking_slot')) : null,
 
-            new Panel('Customer', $this->customerFields()),
+            Text::make('Slot Number')
+                ->rules('required')
+                ->sortable(),
+
+            nova('user') ? BelongsTo::make('User', 'user', nova('user'))->sortable() : null,
+
+            nova('location') ? BelongsTo::make('Location', 'location', nova('location'))->sortable() : null,
+
+            Number::make('Total Participants')->rules(['required', 'integer', 'min:1']),
+
             new Panel('Cost', $this->costFields()),
 
-            nova('signature') ? HasMany::make('Signatures', 'signatures', nova('signature')) : null,
-            nova('note') ? MorphMany::make('Notes', 'notes', nova('note')) : null,
+            MorphTo::make('Experience')->types([
+                nova('escaperoom_game')
+            ]),
+
+            MorphTo::make('Subject')->types([
+                nova('room')
+            ]),
+
+            MorphTo::make('Agent')->types([
+                nova('user')
+            ]),
+
+            nova('rate') ? BelongsTo::make('Rate', 'rate', nova('rate')) : null,
+
+            nova('booking_category') ? BelongsTo::make('Booking Category', 'bookingCategory', nova('booking_category')) : null,
+
+            Date::make('Processed At')->rules('required'),
+
+            Date::make('Canceled At')->rules('required'),
 
             new Panel('Data Fields', $this->dataFields()),
         ]);
     }
 
-    protected function customerFields()
-    {
-        return [
-            Text::make('Name', 'user.full_name')->exceptOnForms(),
-            /**
-             * TODO - if address fields are important for bookings, then booking should be Addressable itself.
-             * It should not rely on an order item/order existing since those packages may not be installed!!
-            Text::make('Address', '...')->exceptOnForms(),
-            Text::make('City', '...')->exceptOnForms(),
-            Text::make('State', '...')->exceptOnForms(),
-            Number::make('Zip', '...')->exceptOnForms(),
-            */
-        ];
-    }
-
     protected function costFields()
     {
         return array_filter([
-            nova('order_item') ? MorphOne::make('Order Item', 'sellable', nova('order_item'))->hideWhenUpdating()->exceptOnForms() : null,
-            nova('rate') ? BelongsTo::make('Rate', 'rate', nova('rate'))->nullable()->exceptOnForms() : null,
-            nova('tax') ? BelongsTo::make('Tax', 'tax', nova('tax'))->nullable()->exceptOnForms() : null,
-            nova('fee') ? BelongsTo::make('Fee', 'fee', nova('fee'))->nullable()->exceptOnForms() : null,
-            Currency::make('Amount')->asMinorUnits()->exceptOnForms(),
-            Currency::make('Taxes', 'total_taxes')->asMinorUnits()->exceptOnForms(),
-            Currency::make('Fees', 'total_fees')->asMinorUnits()->exceptOnForms(),
+            Currency::make('Total Amount')->asMinorUnits()->rules('required'),
+            Currency::make('Amount')->asMinorUnits()->rules('required'),
+            Currency::make('Taxes', 'total_taxes')->asMinorUnits()->rules('required'),
+            Currency::make('Fees', 'total_fees')->asMinorUnits()->rules('required'),
         ]);
     }
 

@@ -17,26 +17,27 @@ class BookingFactory extends Factory
     {
 
         return [
-            'slot_number'           => $this->faker->numberBetween(0, 10),
-            'user_id'               => randomOrCreate(app('user')),
-            'location_id'           => randomOrCreate(app('location')),
-            'total_participants'    => $this->faker->numberBetween(0, 10),
-            'total_amount'          => $this->faker->numberBetween(0, 10),
-            'amount'                => $this->faker->numberBetween(0, 10),
-            'total_taxes'           => $this->faker->numberBetween(0, 10),
-            'total_fees'            => $this->faker->numberBetween(0, 10),
-            'booking_category_id'   => randomOrCreate(app('booking_category')),
-            'rate_id'               => randomOrCreate(app('rate')),
-            'agent_id'              => randomOrCreate(app('user')),
-            'agent_type'            => get_class(app('user')),
-            'subject_type'          => 'subject',
-            'subject_id'            => 1,
-            'experience_type'       => 'experience',
-            'experience_id'         => 1,
-            'processed_at'         => $this->faker->dateTimeBetween('+0 days', '+2 years'),
-            'canceled_at'           => $this->faker->dateTimeBetween('+0 days', '+2 years'),
-            'creator_id'            => randomOrCreate(app('user')),
-            'updater_id'            => randomOrCreate(app('user')),
+            'slot_number'         => $this->faker->numberBetween(0, 10),
+            'user_id'             => randomOrCreate(app('user')),
+            'location_id'         => randomOrCreate(app('location')),
+            'total_participants'  => $this->faker->numberBetween(0, 10),
+            'total_amount'        => $this->faker->numberBetween(0, 10),
+            'amount'              => $this->faker->numberBetween(0, 10),
+            'total_taxes'         => $this->faker->numberBetween(0, 10),
+            'total_fees'          => $this->faker->numberBetween(0, 10),
+            'booking_category_id' => randomOrCreate(app('booking_category')),
+            'booking_slot_id'     => randomOrCreate(app('booking_slot')),
+            'rate_id'             => randomOrCreate(app('rate')),
+            'agent_id'            => randomOrCreate(app('user')),
+            'agent_type'          => get_class(app('user')),
+            'subject_type'        => 'subject',
+            'subject_id'          => 1,
+            'experience_type'     => 'experience',
+            'experience_id'       => 1,
+            'processed_at'        => $this->faker->dateTimeBetween('+0 days', '+2 years'),
+            'canceled_at'         => $this->faker->dateTimeBetween('+0 days', '+2 years'),
+            'creator_id'          => randomOrCreate(app('user')),
+            'updater_id'          => randomOrCreate(app('user')),
         ];
     }
 
@@ -49,9 +50,10 @@ class BookingFactory extends Factory
     {
         return $this->state(function (array $attributes) use ($subject) {
             $subjectModel = app($subject);
+
             return [
-                'subject_id'            => $subjectModel->id,
-                'subject_type'          => get_class($subjectModel),
+                'subject_id'   => $subjectModel->id,
+                'subject_type' => get_class($subjectModel),
             ];
         });
     }
@@ -65,9 +67,10 @@ class BookingFactory extends Factory
     {
         return $this->state(function (array $attributes) use ($experience) {
             $experienceModel = app($experience);
+
             return [
-                'experience_id'            => $experienceModel->id,
-                'experience_type'          => get_class($experienceModel),
+                'experience_id'   => $experienceModel->id,
+                'experience_type' => get_class($experienceModel),
             ];
         });
     }
@@ -81,8 +84,8 @@ class BookingFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'experience_id'            => 1,
-                'experience_type'          => 'experience',
+                'experience_id'   => 1,
+                'experience_type' => 'experience',
             ];
         });
     }

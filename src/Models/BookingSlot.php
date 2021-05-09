@@ -17,15 +17,16 @@ class BookingSlot extends BaseModel implements BookingSlotInterface
     use HasUpdater;
 
     protected $casts = [
-        'date' => 'datetime',
-        'start_at' => 'datetime',
-        'end_at' => 'datetime',
+        'date'              => 'datetime',
+        'start_at'          => 'datetime',
+        'end_at'            => 'datetime',
+        'room_available_at' => 'datetime'
     ];
 
     /**
      * Resolve slot by number.
      *
-     * @param  string $slotNumber
+     * @param string $slotNumber
      * @return self
      */
     public function resolveSlot($slotNumber): self
@@ -168,5 +169,25 @@ class BookingSlot extends BaseModel implements BookingSlotInterface
     public function bookings(): Relation
     {
         return $this->hasMany(app('booking'));
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(app('room'));
+    }
+
+    public function rate()
+    {
+        return $this->belongsTo(app('rate'));
+    }
+
+    public function supervision()
+    {
+        return $this->belongsTo(app('supervision'));
+    }
+
+    public function blocks()
+    {
+        return $this->hasMany(app('block'));
     }
 }
