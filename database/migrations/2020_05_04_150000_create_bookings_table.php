@@ -27,7 +27,7 @@ class CreateBookingsTable extends Migration
             $table->foreignIdFor(app('booking_slot'));
             $table->morphs('agent');
             $table->datetime('processed_at');
-            $table->datetime('canceled_at');
+            $table->datetime('canceled_at')->nullable();
 
             $table->foreignIdFor(app('user'), 'creator_id');
             $table->foreignIdFor(app('user'), 'updater_id');
