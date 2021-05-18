@@ -24,7 +24,6 @@ class CreateBookingsTable extends Migration
             $table->morphs('subject');
             $table->foreignIdFor(app('rate'));
             $table->foreignIdFor(app('booking_category'));
-            $table->foreignIdFor(app('booking_slot'));
             $table->morphs('agent');
             $table->datetime('processed_at');
             $table->datetime('canceled_at')->nullable();

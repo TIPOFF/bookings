@@ -194,11 +194,6 @@ class Booking extends BaseModel implements BookingInterface
         return $this->belongsTo(app('booking_category'));
     }
 
-    public function bookingSlot()
-    {
-        return $this->belongsTo(app('booking_slot'));
-    }
-
     public function subject(): Relation
     {
         return $this->morphTo();

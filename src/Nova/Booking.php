@@ -74,8 +74,6 @@ class Booking extends BaseResource
     public function fields(Request $request)
     {
         return array_filter([
-            nova('booking_slot') ? BelongsTo::make('Booking Slot', 'bookingSlot', nova('booking_slot')) : null,
-
             Text::make('Slot Number')
                 ->rules('required')
                 ->sortable(),
