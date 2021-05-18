@@ -17,10 +17,10 @@ class BookingSlot extends BaseModel implements BookingSlotInterface
     use HasUpdater;
 
     protected $casts = [
-        'date'              => 'datetime',
-        'start_at'          => 'datetime',
-        'end_at'            => 'datetime',
-        'room_available_at' => 'datetime'
+        'date' => 'datetime',
+        'start_at' => 'datetime',
+        'end_at' => 'datetime',
+        'room_available_at' => 'datetime',
     ];
 
     /**

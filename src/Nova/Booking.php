@@ -58,15 +58,15 @@ class Booking extends BaseResource
             Number::make('Total Participants')->sortable(),
 
             MorphTo::make('Experience')->types([
-                nova('escaperoom_game')
+                nova('escaperoom_game'),
             ]),
 
             MorphTo::make('Subject')->types([
-                nova('room')
+                nova('room'),
             ]),
 
             MorphTo::make('Agent')->types([
-                nova('user')
+                nova('user'),
             ]),
         ]);
     }
@@ -87,15 +87,15 @@ class Booking extends BaseResource
             new Panel('Cost', $this->costFields()),
 
             MorphTo::make('Experience')->types([
-                nova('escaperoom_game')
+                nova('escaperoom_game'),
             ]),
 
             MorphTo::make('Subject')->types([
-                nova('room')
+                nova('room'),
             ]),
 
             MorphTo::make('Agent')->types([
-                nova('user')
+                nova('user'),
             ]),
 
             nova('rate') ? BelongsTo::make('Rate', 'rate', nova('rate')) : null,
