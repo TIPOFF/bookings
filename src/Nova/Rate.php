@@ -52,7 +52,7 @@ class Rate extends BaseResource
 
             new Panel('Data Fields', $this->dataFields()),
 
-            nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null
+            nova('booking') ? HasMany::make('Bookings', 'bookings', nova('booking')) : null,
         ];
     }
 

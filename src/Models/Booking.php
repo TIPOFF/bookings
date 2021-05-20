@@ -35,7 +35,7 @@ class Booking extends BaseModel implements BookingInterface
 
     protected $casts = [
         'processed_at' => 'datetime',
-        'canceled_at' => 'datetime'
+        'canceled_at' => 'datetime',
     ];
 
     public function getLabel(): string
@@ -192,11 +192,6 @@ class Booking extends BaseModel implements BookingInterface
     public function bookingCategory()
     {
         return $this->belongsTo(app('booking_category'));
-    }
-
-    public function bookingSlot()
-    {
-        return $this->belongsTo(app('booking_slot'));
     }
 
     public function subject(): Relation

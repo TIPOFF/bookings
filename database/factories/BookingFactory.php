@@ -26,7 +26,6 @@ class BookingFactory extends Factory
             'total_taxes'         => $this->faker->numberBetween(0, 10),
             'total_fees'          => $this->faker->numberBetween(0, 10),
             'booking_category_id' => randomOrCreate(app('booking_category')),
-            'booking_slot_id'     => randomOrCreate(app('booking_slot')),
             'rate_id'             => randomOrCreate(app('rate')),
             'agent_id'            => randomOrCreate(app('user')),
             'agent_type'          => get_class(app('user')),
