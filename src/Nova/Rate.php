@@ -40,10 +40,10 @@ class Rate extends BaseResource
     public function fields(Request $request)
     {
         return [
-            Text::make('Name')->required(),
-            Slug::make('Slug')->from('Name'),
-            Text::make('Rate Type'),
-            Number::make('Participants Limit'),
+            Text::make('Name')->rules(['required', 'max:254']),
+            Slug::make('Slug')->from('Name')->rules(['required', 'max:254']),
+            Text::make('Rate Type')->rules(['required', 'max:254']),
+            Number::make('Participants Limit')->rules(['required', 'max:254']),
             nova('rate_category') ? BelongsTo::make('Rate Category', 'rate_category', nova('rate_category')) : null,
 
             new Panel('Money Fields', $this->moneyFields()),
